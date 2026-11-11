@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Skills de auditoria de segurança **somente leitura** para MikroTik RouterOS (v6/v7), empacotadas
-para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio (24 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
+para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio (25 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
 
 [Read in English](README.md)
 
@@ -32,6 +32,7 @@ para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Um
 | [`user-manager`](user-manager/) | User Manager (servidor RADIUS embutido): exposição, lista de NAS, métodos de autenticação, credenciais guardadas. |
 | [`dude`](dude/) | Servidor The Dude: acesso do cliente, syslog embutido, banco, credenciais guardadas. |
 | [`rose-storage`](rose-storage/) | Storage servido pelo roteador: SMB, NFS, DLNA, iSCSI, NVMe/TCP, discos-arquivo, RAID. |
+| [`iot`](iot/) | Pacote iot: gateway Modbus, MQTT, LoRa, Bluetooth, Wiliot. |
 | [`certificates`](certificates/) | Armazém de certificados e seu uso pelos serviços. |
 
 Cada checagem é uma linha de tabela com: **comando de leitura**, **o que caracteriza falha** e
