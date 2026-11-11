@@ -1,0 +1,3 @@
+interface:
+  display_name: "OVPN"
+  short_description: "Audit OpenVPN servers and clients: certificates, algorithms, TLS, verification."

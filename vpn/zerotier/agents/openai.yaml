@@ -1,0 +1,3 @@
+interface:
+  display_name: "ZeroTier"
+  short_description: "Audit ZeroTier networks joined and controlled by the router."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "L2TP"
+  short_description: "Audit L2TP server, client and L2TPv3: IPsec, PPP auth, exposure."
