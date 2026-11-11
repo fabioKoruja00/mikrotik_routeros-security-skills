@@ -116,5 +116,6 @@ devices, not one item per device.
 | `capsman` | CAPsMAN |
 | `scripts-storage` | scripts, scheduler, files, containers |
 | `logging` | logging, NTP, SNMP |
-| `aaa` | RADIUS, PPP secrets, User Manager |
+| `aaa` | RADIUS client, PPP secrets |
+| `user-manager` | User Manager (built-in RADIUS server) |
 | `certificates` | certificate store |
