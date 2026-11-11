@@ -106,7 +106,7 @@ devices, not one item per device.
 | `layer2` | MNDP, bridge, VLAN, STP |
 | `dhcp` | DHCP server and client |
 | `ip-settings` | /ip settings (print-only values) |
-| `vpn` | tunnels not yet split: PPP, PPPoE, VXLAN, EoIP |
+| `vpn` | tunnels not yet split: PPP, VXLAN, EoIP |
 | `vpn/wireguard` | WireGuard interfaces and peers |
 | `vpn/zerotier` | ZeroTier instances, networks and controllers |
 | `vpn/ipsec` | IPsec profiles, proposals, peers, policies |
@@ -114,6 +114,7 @@ devices, not one item per device.
 | `vpn/pptp` | PPTP server, client and exposure |
 | `vpn/sstp` | SSTP server and client, TLS and verification |
 | `vpn/ovpn` | OpenVPN servers and clients |
+| `vpn/pppoe` | PPPoE concentrators and clients |
 | `qos` | queues with a security effect |
 | `ipv6` | IPv6 stack, firewall, RA/ND, DHCPv6, transition |
 | `ospf` | OSPF |
