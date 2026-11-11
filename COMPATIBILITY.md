@@ -56,9 +56,8 @@ git clone https://github.com/fabioKoruja00/routeros-security-skills ~/routeros-s
 
 mkdir -p ~/.claude/skills ~/.codex/skills ~/.gemini/config/skills
 
-for d in ~/routeros-security-skills/*/; do
-  [ -f "$d/SKILL.md" ] || continue
-  d="${d%/}"
+find ~/routeros-security-skills -name SKILL.md -not -path "*/.git/*" | while read -r f; do
+  d="$(dirname "$f")"
   name="$(basename "$d")"
   ln -sfn "$d" "$HOME/.claude/skills/$name"
   ln -sfn "$d" "$HOME/.codex/skills/$name"

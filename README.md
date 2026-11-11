@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI coding agents
-(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain (25 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
+(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain; a category folder holds one skill per type (29 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
 
 [Leia em português](README.pt-BR.md)
 
@@ -18,7 +18,7 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`layer2`](layer2/) | MNDP, neighbor table, DHCP snooping, RA Guard, horizon, BPDU guard, STP, bridge filters and hardware offload, VLAN filtering, PVID, MAC limits. |
 | [`dhcp`](dhcp/) | DHCP server alerts, pool exhaustion, static leases, add-arp, lease scripts, DHCP client trust. |
 | [`ip-settings`](ip-settings/) | `/ip settings` values that only show in print: rp-filter, redirects, source route, forwarding, ARP limits, ICMP rate. |
-| [`vpn`](vpn/) | PPTP, L2TP/IPsec, PPP, PPPoE, Quick Set and Back To Home, SSTP, OVPN, IPsec, WireGuard, VXLAN, ZeroTier, EoIP, port knocking. |
+| [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`. PPTP, PPP, PPPoE, Quick Set and Back To Home, SSTP, OVPN, VXLAN, EoIP and port knocking are still in the category skill. |
 | [`qos`](qos/) | Queues with a security effect: management priority, guarantees, PCQ, dead queues, dynamic queues, bufferbloat. |
 | [`ipv6`](ipv6/) | IPv6 stack, RA/ND, IPv6 firewall, DHCPv6/PD, IPv6 routing, transition, addressing, extension headers. |
 | [`ospf`](ospf/) | OSPF neighborship, network types, areas, redistribution, PPPoE /32 flood, v6↔v7 menu map. |
