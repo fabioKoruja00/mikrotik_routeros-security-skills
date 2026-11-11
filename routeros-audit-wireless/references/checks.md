@@ -27,7 +27,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
 | Credential-reading permission granted to monitoring users | `/user group print detail` and `/user print proplist=name,group,address,disabled` | a monitoring-only group includes `sensitive`/`password` capabilities or equivalent access that could expose stored credentials. Do not prove this by reading the credentials themselves | HIGH |
-| PPSK-bearing access list | `/interface wireless access-list print proplist=mac-address,interface,signal-range,authentication,forwarding,disabled` | per-client credential entries exist; assess admission scope and permissions only. Never retrieve or score the PPSK value | MEDIUM |
+| PPSK-bearing access list | `/interface wireless access-list print proplist=mac-address,interface,signal-range,authentication,forwarding,disabled` (legacy) / `/interface wifi access-list print proplist=mac-address,interface,ssid-regexp,signal-range,action,vlan-id,disabled` (wifi; `passphrase` and `multi-passphrase-group` stay out) | per-client credential entries exist; assess admission scope and permissions only. Never retrieve or score the PPSK value | MEDIUM |
 
 This is why collection in this skill uses `proplist`: `print detail` in these areas brings secrets.
 
@@ -35,7 +35,7 @@ This is why collection in this skill uses `proplist`: `print detail` in these ar
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Permissive final rule | `/interface wireless access-list print proplist=mac-address,interface,signal-range,authentication,forwarding,time,disabled` | last entry **without** `mac-address`, with `authentication=yes forwarding=yes`: a catch-all that authenticates anyone | HIGH |
+| Permissive final rule | `/interface wireless access-list print proplist=mac-address,interface,signal-range,authentication,forwarding,time,disabled` | last entry **without** `mac-address`, with `authentication=yes forwarding=yes` (legacy) or `action=accept` (wifi, same safe `proplist` as above plus `time`): a catch-all that authenticates anyone | HIGH |
 | Rule order | same command (the numbering is the evaluation order) | broad permissive rule before the restrictive one — the list stops at the first match | HIGH |
 | Empty list with permissive default | `/interface wireless print proplist=name,default-authentication,default-forwarding,security-profile,disabled` + access-list | `default-authentication=yes` and an empty list: only the password stands in the way | MEDIUM |
 | MAC as the only control | `/interface wireless access-list print proplist=mac-address,interface,signal-range,authentication,forwarding,time,disabled` | MAC filter without WPA2 underneath — a MAC is sniffed and cloned | HIGH |
@@ -63,9 +63,9 @@ This is why collection in this skill uses `proplist`: `print detail` in these ar
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Regulatory limit ignored | `/interface wireless print proplist=name,frequency-mode,country,tx-power-mode,tx-power,disabled` | `frequency-mode=manual-txpower` or `superchannel`: power and channel outside the local rules | HIGH |
+| Regulatory limit ignored | `/interface wireless print proplist=name,frequency-mode,country,tx-power-mode,tx-power,disabled` (legacy) / `/interface wifi print proplist=name,configuration.country,configuration.tx-power,configuration.antenna-gain,disabled` + `/interface wifi radio print proplist=radio-mac,current-country,current-max-reg-power,min-antenna-gain` (wifi) | `frequency-mode=manual-txpower` or `superchannel`: power and channel outside the local rules | HIGH |
 | Country not set | same safe wireless `proplist` + `/interface wireless info country-info <country>` | `country=no_country_set` or a country other than the one of operation | HIGH |
-| Antenna gain not declared | `/interface wireless print proplist=name,antenna-gain,country,frequency-mode,disabled` | `0` with an external antenna. Since 6.46 the field disappeared from the UI on fixed-antenna devices, **but stays changeable from the CLI** | HIGH |
+| Antenna gain not declared | `/interface wireless print proplist=name,antenna-gain,country,frequency-mode,disabled` (legacy) / the wifi pair above (`configuration.antenna-gain` against the radio's `min-antenna-gain`) | `0` with an external antenna. Since 6.46 the field disappeared from the UI on fixed-antenna devices, **but stays changeable from the CLI** | HIGH |
 | Manual power above the allowed | same (`tx-power-mode`, `tx-power`, `tx-chains`) | `all-rates-fixed`/`manual` above the EIRP. **Careful with the maths:** with 802.11n the chains add +3/+5/+6 dBm to the configured value | MEDIUM |
 | Real channel different from the configured one | `/interface wireless monitor <if> once` | with DFS or `frequency=auto`, the `frequency` field **does not prove** the channel in use — the radio moves on its own on radar detection | MEDIUM |
 | Basic rate too low | `/interface wireless print proplist=name,basic-rates-a-g,basic-rates-b,disabled` | 1/2 Mbps on 2.4 GHz: extends the usable range of the cell beyond the perimeter | LOW |
@@ -75,10 +75,10 @@ This is why collection in this skill uses `proplist`: `print detail` in these ar
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Associated client nobody knows | `/interface wireless registration-table print proplist=interface,mac-address,ap,signal-strength,signal-to-noise,tx-rate,rx-rate,distance,authentication-type,encryption,group-encryption,last-ip,uplink,uptime` or `/caps-man registration-table print proplist=interface,mac-address,signal,tx-rate,rx-rate,authentication-type,encryption,last-ip,uptime` | MAC outside the inventory, `last-ip` outside the range, distance incompatible with the coverage, or a weak cipher in use — **the table proves the state; the profile only declares the intention** | HIGH |
-| AP in the controller list that is not yours | `/caps-man remote-cap print proplist=identity,address,base-mac,board,version,state` | unknown device in state `Run` | HIGH |
-| Unprovisioned radio | `/caps-man radio print` | radio listed without the provisioned mark: does not radiate, and nobody notices | MEDIUM |
-| Sniffer on | `/interface wireless sniffer print` | `streaming-enabled=yes` or `server` pointing to an unplanned host: network frames leaving over TZSP | HIGH |
+| Associated client nobody knows | `/interface wireless registration-table print proplist=interface,mac-address,ap,signal-strength,signal-to-noise,tx-rate,rx-rate,distance,authentication-type,encryption,group-encryption,last-ip,uplink,uptime` or `/caps-man registration-table print proplist=interface,mac-address,signal,tx-rate,rx-rate,authentication-type,encryption,last-ip,uptime` (legacy) / `/interface wifi registration-table print proplist=interface,ssid,mac-address,auth-type,mfp,signal,tx-rate,rx-rate,dhcp-address,uptime` (wifi; `mfp` from 7.25) | MAC outside the inventory, `last-ip` outside the range, distance incompatible with the coverage, or a weak cipher in use — **the table proves the state; the profile only declares the intention** | HIGH |
+| AP in the controller list that is not yours | `/caps-man remote-cap print proplist=identity,address,base-mac,board,version,state` (legacy) / `/interface wifi capsman remote-cap print proplist=identity,address,base-mac,board-name,version,state,common-name` (wifi) | unknown device in state `Run` | HIGH |
+| Unprovisioned radio | `/caps-man radio print` (legacy) / `/interface wifi radio print proplist=radio-mac,cap,interface` (wifi: empty `interface`) | radio listed without the provisioned mark: does not radiate, and nobody notices | MEDIUM |
+| Sniffer on | `/interface wireless sniffer print` (legacy; the wifi driver has no persistent sniffer menu to read) | `streaming-enabled=yes` or `server` pointing to an unplanned host: network frames leaving over TZSP | HIGH |
 | Wireless log missing | `/system logging print detail` | no rule with topic `wireless`: no evidence of mass deauthentication, DFS or authentication failure | MEDIUM |
 | RADIUS accounting off | `/interface wifi aaa print proplist=name,interim-update,mac-caching,disabled` (wifi drivers) or `/caps-man aaa print` (`interim-update`, legacy `wireless` only) and the access-list (`radius-accounting` exists on `/interface wifi access-list`; `/caps-man aaa` has no such field) | no accounting or `interim-update=0`: no record of who connected and when | MEDIUM |
 
