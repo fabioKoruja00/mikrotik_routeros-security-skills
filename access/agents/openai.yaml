@@ -1,0 +1,3 @@
+interface:
+  display_name: "Access"
+  short_description: "Audit RouterOS administrative access, users, SSH, device-mode and physical access."
