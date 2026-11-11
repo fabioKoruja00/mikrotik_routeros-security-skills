@@ -37,9 +37,10 @@ Scheduler and script are where an intruder's persistence lives. A finding here i
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Container active without being planned | `/container print proplist=name,status,interface,root-dir,ram-limit,remote-image,logging,workdir,stop-signal,disabled` | container running on a network device nobody declared | CRITICAL |
-| No RAM ceiling | `/container print proplist=name,status,interface,root-dir,ram-limit,remote-image,logging,workdir,stop-signal,disabled` | `ram-limit` empty: a memory leak kills the router by OOM | HIGH |
-| Running on the internal flash | `/container print proplist=name,status,interface,root-dir,ram-limit,remote-image,logging,workdir,stop-signal,disabled` (`root-dir`) | `root-dir` on the internal NAND — constant writes destroy the device's flash | HIGH |
+| Container active without being planned | `/container print proplist=name,running,interface,root-dir,memory-max,remote-image,logging,workdir,privileged,restart-policy` | container running on a network device nobody declared | CRITICAL |
+| No RAM ceiling | `/container print proplist=name,running,interface,root-dir,memory-max,remote-image,logging,workdir,privileged,restart-policy` | `memory-max` empty: a memory leak kills the router by OOM | HIGH |
+| Privileged container (7.24+) | same command | `privileged=yes` without a declared need: the container reaches the host's devices and kernel interfaces | HIGH |
+| Running on the internal flash | `/container print proplist=name,running,interface,root-dir,memory-max,remote-image,logging,workdir,privileged,restart-policy` (`root-dir`) | `root-dir` on the internal NAND — constant writes destroy the device's flash | HIGH |
 | veth with access to management | `/interface veth print detail` and `/interface bridge port print detail` | container interface in the same bridge as management, without a filter | HIGH |
-| Untrusted image source | `/container print proplist=name,status,interface,root-dir,ram-limit,remote-image,logging,workdir,stop-signal,disabled` (`remote-image`) | image pulled from a public registry without pinning the digest | HIGH |
+| Untrusted image source | `/container print proplist=name,running,interface,root-dir,memory-max,remote-image,logging,workdir,privileged,restart-policy` (`remote-image`) | image pulled from a public registry without pinning the digest | HIGH |
 | `container` enabled without use | `/system device-mode print` | `container=yes` on a device that runs none | MEDIUM |
