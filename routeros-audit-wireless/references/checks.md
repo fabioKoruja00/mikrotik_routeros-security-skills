@@ -80,7 +80,7 @@ This is why collection in this skill uses `proplist`: `print detail` in these ar
 | Unprovisioned radio | `/caps-man radio print` | radio listed without the provisioned mark: does not radiate, and nobody notices | MEDIUM |
 | Sniffer on | `/interface wireless sniffer print` | `streaming-enabled=yes` or `server` pointing to an unplanned host: network frames leaving over TZSP | HIGH |
 | Wireless log missing | `/system logging print detail` | no rule with topic `wireless`: no evidence of mass deauthentication, DFS or authentication failure | MEDIUM |
-| RADIUS accounting off | `/caps-man aaa print` (`interim-update`) and the access-list (`radius-accounting` exists on `/interface wifi access-list`; `/caps-man aaa` has no such field) | no accounting or `interim-update=0`: no record of who connected and when | MEDIUM |
+| RADIUS accounting off | `/interface wifi aaa print proplist=name,interim-update,mac-caching,disabled` (wifi drivers) or `/caps-man aaa print` (`interim-update`, legacy `wireless` only) and the access-list (`radius-accounting` exists on `/interface wifi access-list`; `/caps-man aaa` has no such field) | no accounting or `interim-update=0`: no record of who connected and when | MEDIUM |
 
 ## 7. Nuances that generate false positives
 
