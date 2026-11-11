@@ -12,7 +12,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Unexpected targeted session | `/mpls ldp neighbor print detail` | neighbor flagged `targeted` for an address outside the core | HIGH |
 | LDP neighbor outside the inventory | same command | unplanned dynamic neighbor, or with addresses outside the core ranges | HIGH |
 | Colliding label range | `/mpls print` (v6) / `/mpls settings print` (v7) | `dynamic-label-range` overlapping a static binding, or including 0-15 (reserved) — forwarding to the wrong destination | HIGH |
-| Orphan static binding | `/mpls local-bindings print`, `/mpls remote-bindings print`, `/mpls forwarding-table print` | label pointing to a next-hop outside the MPLS domain | MEDIUM |
+| Orphan static binding | `/mpls ldp local-mapping print`, `/mpls ldp remote-mapping print` (v7) / `/mpls local-bindings print`, `/mpls remote-bindings print` (v6), plus `/mpls forwarding-table print` | label pointing to a next-hop outside the MPLS domain | MEDIUM |
 | Insufficient MTU on the path | `/mpls interface print detail` + `/interface print proplist=name,type,mtu,l2mtu` | L2MTU smaller than the required MPLS MTU: if the next header is not IP, **the packet is discarded silently** — intermittent failure that never shows in a log | MEDIUM |
 | TTL propagated | `/mpls settings print` (v7) / `/mpls print` (v6) | `propagate-ttl=yes`: a traceroute from outside enumerates the core IPs | LOW |
 | Unsupported architecture (v7) | `/system resource print` | `smips` device planned as LSR/PE — **MPLS does not exist on that architecture on v7** | HIGH |
@@ -28,7 +28,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Divergent control word | `/interface vpls print detail` | enabled on one side only: frames reassembled wrong or the tunnel does not come up | MEDIUM |
 | Repeated RD | `/ip route vrf print detail` (v6) / `/ip vrf print detail` (v7) | same route-distinguisher on different VRFs: VPNv4 prefixes stop being unique | CRITICAL |
 | Open import RT | `/routing bgp vpn print proplist=route-distinguisher,import-route-targets,export-route-targets,redistribute,disabled` (v7) | import matching another customer's export: **one customer's route enters another's VRF** | CRITICAL |
-| Duplicated `site-id` in BGP-VPLS | `/interface vpls bgp-vpls print detail` | dynamic tunnel created for a peer that does not belong to the VPN — and it **joins the bridge on its own** | CRITICAL |
+| Duplicated `site-id` in BGP-VPLS | `/routing bgp vpls print detail` (v7) / `/interface vpls bgp-vpls print detail` (v6) | dynamic tunnel created for a peer that does not belong to the VPN — and it **joins the bridge on its own** | CRITICAL |
 | Redistribution of connected in the VRF | `/routing bgp vpn print proplist=route-distinguisher,import-route-targets,export-route-targets,redistribute,disabled` | PE-CE links and the management network entering the customer's VPN | HIGH |
 | Route leaking to the global table | `/ip route print where routing-table=<vrf>` (v7; `routing-mark` on v6), never the full table | static route in a customer VRF resolving through `@main` towards addresses outside that customer: punches through the isolation. `@main` only resolves the next hop — confirm what the route exposes before rating it | HIGH |
 | Management VRF mismatch | `/ip service print detail` + `/ip vrf print detail` | RouterOS v7 can bind telnet, www, ssh, www-ssl, api, winbox and api-ssl to a VRF; the default is `main` and FTP is an exception; on v6 services answer only through the main table. Finding: the documented management VRF does not match the service's actual `vrf` setting | HIGH |
@@ -38,9 +38,9 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
 | TE on an edge interface | `/mpls traffic-eng interface print detail` | TE enabled outside the core: opaque LSAs with backbone topology and bandwidth leaving the trusted domain | HIGH |
-| Path with loose hops | `/mpls traffic-eng tunnel-path print detail` and `/interface traffic-eng monitor <n>` | too many `loose` hops — the LSP may cross a third party's equipment. The recorded path proves where it went | MEDIUM |
+| Path with loose hops | `/mpls traffic-eng path print detail` and `/mpls traffic-eng tunnel print detail` (v7) / `/mpls traffic-eng tunnel-path print detail` and `/interface traffic-eng monitor <n>` (v6) | too many `loose` hops — the LSP may cross a third party's equipment. The recorded path proves where it went | MEDIUM |
 | Reservation exhausted | `/mpls traffic-eng interface print` | remaining bandwidth at zero: no new tunnel comes up, **including the protection ones** | MEDIUM |
-| No secondary path | `/interface traffic-eng print detail` | critical service without an alternative: a link failure takes it down with no automatic failover | HIGH |
+| No secondary path | `/mpls traffic-eng tunnel print detail` (v7) / `/interface traffic-eng print detail` (v6) | critical service without an alternative: a link failure takes it down with no automatic failover | HIGH |
 | `bandwidth` mistaken for a limit | `/interface traffic-eng print detail` | operator believes `bandwidth` limits the rate — **it only accounts the reservation**; `bandwidth-limit` is what limits | MEDIUM |
 | Next-hop diverted to TE | `/routing filter rule print detail` (v7) / `/routing filter print detail` (v6, action `set-use-te-nexthop`) | TE next-hop enabled for BGP traffic without the policy saying so | MEDIUM |
 
