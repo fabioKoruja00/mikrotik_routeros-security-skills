@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Skills de auditoria de segurança **somente leitura** para MikroTik RouterOS (v6/v7), empacotadas
-para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio; pasta de categoria guarda uma skill por tipo (31 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
+para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio; pasta de categoria guarda uma skill por tipo (32 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
 
 [Read in English](README.md)
 
@@ -18,7 +18,7 @@ para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Um
 | [`layer2`](layer2/) | MNDP, tabela de vizinhos, DHCP snooping, RA Guard, horizon, BPDU guard, STP, filtro de bridge e hardware offload, VLAN filtering, PVID, limite de MAC. |
 | [`dhcp`](dhcp/) | Alertas do servidor DHCP, esgotamento de pool, lease estático, add-arp, lease script, confiança do cliente DHCP. |
 | [`ip-settings`](ip-settings/) | Valores de `/ip settings` que só aparecem no print: rp-filter, redirects, source route, forwarding, limite de ARP, taxa de ICMP. |
-| [`vpn`](vpn/) | Categoria, uma skill por tipo: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`. PPP, PPPoE, Quick Set e Back To Home, OVPN, VXLAN, EoIP e port knocking seguem na skill da categoria. |
+| [`vpn`](vpn/) | Categoria, uma skill por tipo: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`. PPP, PPPoE, Quick Set e Back To Home, VXLAN, EoIP e port knocking seguem na skill da categoria. |
 | [`qos`](qos/) | Filas com efeito de segurança: prioridade da gerência, garantias, PCQ, fila morta, filas dinâmicas, bufferbloat. |
 | [`ipv6`](ipv6/) | Pilha IPv6, RA/ND, firewall IPv6, DHCPv6/PD, roteamento IPv6, transição, endereçamento, cabeçalhos de extensão. |
 | [`ospf`](ospf/) | Vizinhança OSPF, tipos de rede, áreas, redistribuição, enxurrada de /32 do PPPoE, mapa de menus v6↔v7. |
