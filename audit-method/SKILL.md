@@ -118,4 +118,5 @@ devices, not one item per device.
 | `logging` | logging, NTP, SNMP |
 | `aaa` | RADIUS client, PPP secrets |
 | `user-manager` | User Manager (built-in RADIUS server) |
+| `dude` | The Dude server |
 | `certificates` | certificate store |

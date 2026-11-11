@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI coding agents
-(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain (22 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
+(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain (23 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
 
 [Leia em português](README.pt-BR.md)
 
@@ -30,6 +30,7 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`logging`](logging/) | Logging, NTP, e-mail, Netwatch, SNMP. |
 | [`aaa`](aaa/) | RADIUS client, CoA, AAA default group, PPP secrets. |
 | [`user-manager`](user-manager/) | User Manager (built-in RADIUS server): exposure, NAS list, auth methods, stored credentials. |
+| [`dude`](dude/) | The Dude server: client access, syslog listener, database, stored credentials. |
 | [`certificates`](certificates/) | Certificate store and its use by services. |
 
 Every check is a table row with: the **read command**, **what characterises a failure**, and a
