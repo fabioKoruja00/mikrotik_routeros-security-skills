@@ -29,6 +29,9 @@ the version has the field.
 | `/snmp community` `denied-oids`, SHA-2 `authentication-protocol` | 7.25 and later | v6, 7.24 and earlier |
 | `/ip neighbor discovery-settings` `dying-gasp` | 7.24 and later | v6, 7.23 and earlier |
 | `/system routerboard` `minimum-firmware` | 7.24 and later | v6, 7.23 and earlier (the field is `factory-firmware`) |
+| `/system resource` `minimum-version` | 7.24 and later | v6, 7.23 and earlier (the field is `factory-software`, measured on 7.20.8) |
+| `/caps-man`, `/interface wireless` | v6; v7 only with the `wireless` package | v7 with `wifi-*` drivers (bad command name): read `/interface wifi capsman`, `/interface wifi cap` and `/interface wifi aaa` |
+| `/mpls local-bindings`, `/interface vpls bgp-vpls`, `/interface traffic-eng` | v6 | v7 (`/mpls ldp local-mapping`, `/routing bgp vpls`, `/mpls traffic-eng tunnel`) |
 | `/system routerboard mode-button`, `reset-button`, `wps-button` | v6 and v7 | there is no `/system routerboard button` |
 | `/user` `password-changed-before` | — | v6 and v7 (no password-age field exists) |
 | `/ip ipsec profile` `disabled` | — | v7 |
