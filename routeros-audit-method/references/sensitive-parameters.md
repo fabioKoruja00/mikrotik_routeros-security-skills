@@ -25,7 +25,10 @@ The official list includes, among others:
 - containers: password;
 - PPP clients and PPP secrets: passwords, PINs and secrets;
 - L2TP, EoIP, GRE, IPIP and related tunnels: IPsec secrets;
-- IPsec: secrets, passwords, keys and passphrases;
+- IPsec: secrets, passwords, keys and passphrases, including the peer `ppk-secret`;
+- hotspot profile: `mac-auth-password`;
+- package local-update mirror: password;
+- LoRa auth keys and MQTT broker passwords;
 - e-mail: password;
 - User Manager: passwords, shared secrets and OTP secrets;
 - WiFi/CAPsMAN/wireless: passphrases, PPSKs, WEP keys, NV2 preshared keys and EAP passwords;

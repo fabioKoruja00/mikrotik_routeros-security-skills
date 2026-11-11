@@ -73,6 +73,21 @@ Source: <https://help.mikrotik.com/docs/spaces/ROS/pages/130220087/Connection+tr
 `established`. Turning it off makes that packet `invalid` — hardens, but **breaks asymmetric
 routing**.
 
+## `/ip ssh`
+
+| Property | Default |
+|---|---|
+| `strong-crypto` | `no` |
+| `forwarding-enabled` | `no` |
+| `host-key-type` | `ed25519` from 7.25; RSA before |
+| `host-key-size` | `2048` (RSA only) |
+| `password-authentication` | `yes-if-no-key` (7.21+; replaces `always-allow-password-login=no`) |
+
+## `/ip service webserver` (7.21+)
+
+Every `*-plain` and `*-secure` switch ships `yes`: with `www` or `www-ssl` enabled, WebFig, REST
+and graphs all answer. The switches only matter while the matching service is up.
+
 ## `/system device-mode` (v7.17+)
 
 Factory mode: `advanced` on CCR and the 1100 line, `home` on home routers, `basic` on the rest.
@@ -87,7 +102,11 @@ mode**, including `advanced` — each has to be enabled one by one.
 
 A change requires physical confirmation (reset/mode button or power cycle) inside the configured
 window — default 5 min, adjustable from `00:00:10` to `1d`. Three unconfirmed attempts lock
-further changes until a power cycle. **There is no way to apply it remotely.**
+further changes until a power cycle (`attempt-count` shows the tally on 7.25.1). **There is no
+way to apply it remotely.**
+
+`allowed-versions` (7.25.1, measured on a hEX S: `7.13+,6.49.8+`) limits which RouterOS versions the
+device accepts to install; `install-any-version=no` keeps that limit.
 
 Source: <https://help.mikrotik.com/docs/spaces/ROS/pages/93749258/Device-mode>
 

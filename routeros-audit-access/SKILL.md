@@ -5,7 +5,7 @@ description: "Read-only audit of administrative access on MikroTik RouterOS: ena
 
 # RouterOS security audit — administrative access
 
-Who can reach the device, from where, and with what power. The most common CRITICAL findings live here: an administrative service with an empty `address` ("Available From"), the `admin` user still enabled, an orphan SSH key, `device-mode` with `flagged=yes`.
+Who can reach the device, from where, and with what power. The most common CRITICAL findings live here: an administrative service with an empty `available-from` (`address` up to 7.23; "Available From" in Winbox), the `admin` user still enabled, an orphan SSH key, `device-mode` with `flagged=yes`.
 
 ## Rules
 
@@ -17,7 +17,8 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **Changing the service port is obfuscation**, not a control: `address` and a filter are.
+- **Changing the service port is obfuscation**, not a control: `available-from` and a filter are.
+- **On 7.24+ `proplist=address` on `/ip service` returns nothing.** The field is `available-from`; `address` survives only as a filter alias. A collection script written for 7.23 reports every service as unrestricted.
 - **Do not recommend disabling Winbox** — it is the recovery path. Restrict its source.
 - **`device-mode` with `flagged=yes`** is a possible compromise, not a configuration backlog.
 - **CCR, IP-only, CAP and switch lines do not ship the default firewall.** "No rules" there is factory-normal; the finding is that nobody built the policy.

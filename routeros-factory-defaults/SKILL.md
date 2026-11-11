@@ -34,7 +34,9 @@ disabled it").
 | `/ip settings` | forwarding, redirects, source routing, rp-filter, syncookies, fast path, ARP timeout, ICMP rate limit |
 | `/ipv6 settings` | stack enabled by default on v7, RA acceptance tied to `forward`, neighbor limits |
 | Connection tracking | `enabled=auto`, `loose-tcp-tracking`, every TCP/UDP/ICMP timeout |
-| Device-mode (v7.17+) | per-model factory mode, features each mode restricts, physical confirmation rule |
+| `/ip ssh` | `strong-crypto`, forwarding, host key type (Ed25519 from 7.25), password login next to keys |
+| `/ip service webserver` (7.21+) | per-service WebFig/REST/graphs switches, all on by default |
+| Device-mode (v7.17+) | per-model factory mode, features each mode restricts, physical confirmation rule, `allowed-versions` |
 | Default firewall (`defconf`) | what the factory config provides per chain, IPv4 and IPv6, and the `bad_ipv6` list |
 | Advanced firewall lists | `bad_ipv4`, `not_global_ipv4`, `bad_src_ipv4`, `bad_dst_ipv4` and their IPv6 counterparts |
 | Services to disable | the vendor's own hardening list (mac-server, MNDP, bandwidth-server, DNS, proxy, SOCKS, UPnP, cloud, SSH crypto) |
