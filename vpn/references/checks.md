@@ -6,7 +6,6 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| PPTP enabled | `/interface pptp-server server print` + the input filter for tcp/1723 | `enabled=yes` reachable from an untrusted network — MS-CHAPv2 broken for years, no fix possible. Enabled but filtered to a closed segment: HIGH | CRITICAL |
 | Cleartext PPP authentication | `/interface <type>-server server print proplist=enabled,authentication` and `/ppp aaa print` | `authentication` accepting `pap`, or `mschap1` without need, on a tunnel whose transport is not protected (PAP inside `use-ipsec=required` is protected) | HIGH |
 | PPP session without cipher | `/ppp active print count-only` first, then a narrow `where` (never a full listing on a concentrator with thousands of sessions) | **empty** encoding on a PPTP/L2TP/SSTP session that should be encrypted. Empty encoding on PPPoE is normal | HIGH |
 | PPP profile not requiring cipher | `/ppp profile print proplist=name,use-encryption,only-one,local-address,remote-address,disabled` | on profiles used by tunnels across an untrusted network: effective `use-encryption` other than `required` (`default` inherits — resolve it). Not applicable to PPPoE access | HIGH |
