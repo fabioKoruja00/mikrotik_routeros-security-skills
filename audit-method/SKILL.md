@@ -119,4 +119,5 @@ devices, not one item per device.
 | `aaa` | RADIUS client, PPP secrets |
 | `user-manager` | User Manager (built-in RADIUS server) |
 | `dude` | The Dude server |
+| `rose-storage` | SMB, NFS, DLNA, iSCSI, NVMe/TCP storage |
 | `certificates` | certificate store |
