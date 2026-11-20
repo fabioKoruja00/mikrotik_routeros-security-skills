@@ -126,7 +126,8 @@ devices, not one item per device.
 | `wireless` | wireless interfaces (legacy and wifi-qcom) |
 | `capsman` | CAPsMAN |
 | `scripts-storage` | scripts, scheduler, files, containers |
-| `logging` | logging, NTP, SNMP |
+| `logging` | logging, NTP, e-mail, Netwatch |
+| `logging/snmp` | SNMP communities and traps |
 | `aaa` | RADIUS client, PPP secrets |
 | `user-manager` | User Manager (built-in RADIUS server) |
 | `dude` | The Dude server |
