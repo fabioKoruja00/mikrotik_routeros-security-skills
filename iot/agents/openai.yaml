@@ -1,0 +1,3 @@
+interface:
+  display_name: "IoT"
+  short_description: "Audit Modbus, MQTT, LoRa, Bluetooth and Wiliot settings of the iot package."

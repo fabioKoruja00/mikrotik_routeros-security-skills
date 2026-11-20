@@ -1,0 +1,3 @@
+interface:
+  display_name: "User Manager"
+  short_description: "Audit the built-in RADIUS server: exposure, NAS list, auth methods and stored credentials."

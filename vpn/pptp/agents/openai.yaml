@@ -1,0 +1,3 @@
+interface:
+  display_name: "PPTP"
+  short_description: "Audit PPTP server, client, exposure, device-mode and sessions."

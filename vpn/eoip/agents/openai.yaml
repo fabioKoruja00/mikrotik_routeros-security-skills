@@ -1,0 +1,3 @@
+interface:
+  display_name: "EoIP"
+  short_description: "Audit EoIP and EoIPv6 tunnels: cipher, L2 reach, firewall, keepalive."

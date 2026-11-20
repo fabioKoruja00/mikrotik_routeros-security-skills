@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit IPv6"
-  short_description: "Audit IPv6 firewall, RA/ND, DHCPv6, routing, transition mechanisms and addressing."

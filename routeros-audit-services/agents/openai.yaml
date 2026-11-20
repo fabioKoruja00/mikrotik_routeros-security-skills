@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit Services"
-  short_description: "Audit RouterOS auxiliary services such as DNS, MAC server, MNDP, UPnP and RoMON."

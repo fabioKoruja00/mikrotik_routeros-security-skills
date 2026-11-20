@@ -1,0 +1,3 @@
+interface:
+  display_name: "ROSE Storage"
+  short_description: "Audit SMB, NFS, DLNA, iSCSI and NVMe/TCP storage served by the router."

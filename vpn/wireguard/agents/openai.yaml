@@ -1,0 +1,3 @@
+interface:
+  display_name: "WireGuard"
+  short_description: "Audit WireGuard interfaces and peers: allowed-address, keys, stale peers."

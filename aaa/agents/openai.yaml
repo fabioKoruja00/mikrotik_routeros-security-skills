@@ -1,0 +1,3 @@
+interface:
+  display_name: "AAA"
+  short_description: "Audit RADIUS, PPP authentication, User Manager and AAA authorization."

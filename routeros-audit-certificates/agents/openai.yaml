@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit Certificates"
-  short_description: "Audit RouterOS certificate inventory, validity, trust and service usage."

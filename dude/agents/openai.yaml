@@ -1,0 +1,3 @@
+interface:
+  display_name: "The Dude"
+  short_description: "Audit The Dude server: client access, syslog listener, database and stored credentials."

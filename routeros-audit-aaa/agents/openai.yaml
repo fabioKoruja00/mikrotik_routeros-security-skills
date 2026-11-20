@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit AAA"
-  short_description: "Audit RADIUS, PPP authentication, User Manager and AAA authorization."

@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit Flood Defense"
-  short_description: "Audit RAW, SYN/DDoS controls, brute-force defenses, conntrack and ICMP handling."

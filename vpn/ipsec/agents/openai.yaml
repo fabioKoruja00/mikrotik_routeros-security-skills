@@ -1,0 +1,3 @@
+interface:
+  display_name: "IPsec"
+  short_description: "Audit IPsec profiles, proposals, peers, identities, policies and SAs."

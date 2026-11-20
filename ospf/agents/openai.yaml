@@ -1,0 +1,3 @@
+interface:
+  display_name: "OSPF"
+  short_description: "Audit RouterOS OSPF adjacencies, areas, authentication and redistribution."

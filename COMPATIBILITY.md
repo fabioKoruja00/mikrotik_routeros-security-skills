@@ -3,7 +3,7 @@
 The RouterOS audit skills use the common directory-based Agent Skills pattern:
 
 ```
-routeros-audit-*/
+*/
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
@@ -28,9 +28,9 @@ Codex discovers user skills under `$CODEX_HOME/skills/` (`~/.codex/skills/` by d
 Recommended project layout:
 
 ```
-<repo>/.codex/skills/routeros-audit-method/
-<repo>/.codex/skills/routeros-factory-defaults/
-<repo>/.codex/skills/routeros-audit-firewall/
+<repo>/.codex/skills/audit-method/
+<repo>/.codex/skills/factory-defaults/
+<repo>/.codex/skills/firewall/
 ...
 ```
 
@@ -56,7 +56,8 @@ git clone https://github.com/fabioKoruja00/routeros-security-skills ~/routeros-s
 
 mkdir -p ~/.claude/skills ~/.codex/skills ~/.gemini/config/skills
 
-for d in ~/routeros-security-skills/routeros-*; do
+find ~/routeros-security-skills -name SKILL.md -not -path "*/.git/*" | while read -r f; do
+  d="$(dirname "$f")"
   name="$(basename "$d")"
   ln -sfn "$d" "$HOME/.claude/skills/$name"
   ln -sfn "$d" "$HOME/.codex/skills/$name"
@@ -70,8 +71,8 @@ On Windows, use directory junctions/symlinks or copy the folders, but keep this 
 
 Every domain skill should be installed with:
 
-- `routeros-audit-method`
-- `routeros-factory-defaults`
+- `audit-method`
+- `factory-defaults`
 
 These two provide the common audit method, safety constraints, severity model, output format, version awareness and factory baselines.
 

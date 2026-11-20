@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit MPLS"
-  short_description: "Audit MPLS, LDP, VPLS, L3VPN isolation and traffic engineering."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "PPPoE"
+  short_description: "Audit PPPoE concentrators and clients: sessions, service names, PPP auth."

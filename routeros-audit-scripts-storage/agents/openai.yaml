@@ -1,3 +1,0 @@
-interface:
-  display_name: "RouterOS Audit Scripts Storage"
-  short_description: "Audit scripts, scheduler, files, backups, fetch, storage and containers."

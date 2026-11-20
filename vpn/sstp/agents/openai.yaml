@@ -1,0 +1,3 @@
+interface:
+  display_name: "SSTP"
+  short_description: "Audit SSTP server and client: certificate, TLS, verification, PPP auth."
