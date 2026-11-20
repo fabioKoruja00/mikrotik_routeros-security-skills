@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Skills de auditoria de segurança **somente leitura** para MikroTik RouterOS (v6/v7), empacotadas
-para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio; pasta de categoria guarda uma skill por tipo (36 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
+para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Uma pasta por domínio; pasta de categoria guarda uma skill por tipo (37 skills). As skills de domínio compartilham duas dependências-base: `audit-method` e `factory-defaults`. A documentação das skills é em inglês.
 
 [Read in English](README.md)
 
@@ -27,7 +27,7 @@ para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Um
 | [`wireless`](wireless/) | Interfaces wireless (legado e wifi-qcom): cifras, exposição da PSK, admissão de cliente, modos, regulatório, registration table. |
 | [`capsman`](capsman/) | CAPsMAN: confiança CAP–controlador, descoberta, provisionamento, datapaths, versões, CA automático. |
 | [`scripts-storage`](scripts-storage/) | Scripts, scheduler, fetch, arquivos e backups no disco, SMB, discos, containers. |
-| [`logging`](logging/) | Log, NTP, e-mail, Netwatch, SNMP. |
+| [`logging`](logging/) | Categoria: `snmp`. Log, NTP, e-mail e Netwatch seguem na skill da categoria. |
 | [`aaa`](aaa/) | Cliente RADIUS, CoA, grupo default do AAA, segredos PPP. |
 | [`user-manager`](user-manager/) | User Manager (servidor RADIUS embutido): exposição, lista de NAS, métodos de autenticação, credenciais guardadas. |
 | [`dude`](dude/) | Servidor The Dude: acesso do cliente, syslog embutido, banco, credenciais guardadas. |
