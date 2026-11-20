@@ -88,7 +88,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Teredo in use | `/ipv6 route print count-only where dst-address in 2001::/32` and `/ip firewall connection print count-only where protocol=udp and dst-port=3544` | route or traffic to `2001::/32` on a network that does not use Teredo: an internal host punching through the egress policy | LOW |
 | v6 tunnel without cipher | `/interface gre6 print proplist=name,local-address,remote-address,disabled` (same for `ipipv6`, `eoipv6`) + `count-only where ipsec-secret=""` + `/ip ipsec policy print count-only` | empty `ipsec-secret` and no IPsec policy covering the pair: the traffic (including the IPv4 carried inside) travels in the clear. Never `print detail` here — it shows the secret | MEDIUM |
 | Open endpoint | same commands + `/ipv6 firewall filter print where protocol=gre` (and `protocol=ipv6-encap` for `ipipv6`) | generic `remote-address`, or accept of GRE/IPIP without restricting the peer's source | HIGH |
-| MSS not adjusted | `/interface gre6 print proplist=name,mtu,clamp-tcp-mss,disabled` (same for `ipipv6`; not on `eoipv6`, which is L2) | `clamp-tcp-mss=no` with a reduced MTU: TCP sessions hang intermittently and become a "ghost problem" | LOW |
+| MSS not adjusted | `/interface gre6 print proplist=name,mtu,clamp-tcp-mss,disabled` (same for `ipipv6` and `eoipv6`) | `clamp-tcp-mss=no` with a reduced MTU: TCP sessions hang intermittently and become a "ghost problem" | LOW |
 
 ## 7. Addressing plan with a security effect
 
