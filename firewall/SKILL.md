@@ -1,6 +1,6 @@
 ---
 name: firewall
-description: "Read-only audit of the MikroTik RouterOS IPv4 firewall chain policy: input and forward chains (final drop, established/related, invalid, WAN new connections, dstnat), bogon and anti-spoof lists, TCP flag combinations, interface lists as zones, counters and disabled rules, fasttrack exceptions, NAT (permissive dst-nat, masquerade without interface, IPsec bypass, undocumented redirects), ALG helpers, FQDN address-lists, mangle marks capturing management, drop logging. This skill should be used when reviewing the filter, NAT and mangle tables of a RouterOS device without changing them."
+description: "Read-only audit of the MikroTik RouterOS IPv4 firewall chain policy: input and forward chains (final drop, established/related, invalid, WAN new connections, dstnat), bogon and anti-spoof lists, TCP flag combinations, interface lists as zones, counters and disabled rules, fasttrack exceptions, NAT (permissive dst-nat, masquerade without interface, IPsec bypass, undocumented redirects), ALG helpers, FQDN address-lists, mangle marks capturing management, drop logging, port knocking. This skill should be used when reviewing the filter, NAT and mangle tables of a RouterOS device without changing them."
 ---
 
 # Firewall chain policy
@@ -22,3 +22,4 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Fasttrack skips firewall, conntrack and queues.** Rules after it do not apply to the accelerated connection, and the UI keeps showing both as if they did.
 - **`log=yes` on a drop without `limit`** is a DoS the device applies to itself.
 - **On a device that only bridges, `/ip firewall` does not see the traffic** while `use-ip-firewall=no`. The whole policy may be decorative.
+- **Port knocking is obscurity.** The sequence crosses the network in clear text; it never replaces `available-from` or the management allowlist.

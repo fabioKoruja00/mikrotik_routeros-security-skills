@@ -106,7 +106,7 @@ devices, not one item per device.
 | `layer2` | MNDP, bridge, VLAN, STP |
 | `dhcp` | DHCP server and client |
 | `ip-settings` | /ip settings (print-only values) |
-| `vpn` | Quick Set, Back To Home and port knocking, not yet split |
+| `vpn` | Quick Set and Back To Home, not yet split |
 | `vpn/wireguard` | WireGuard interfaces and peers |
 | `vpn/zerotier` | ZeroTier instances, networks and controllers |
 | `vpn/ipsec` | IPsec profiles, proposals, peers, policies |

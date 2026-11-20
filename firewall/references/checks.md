@@ -31,3 +31,15 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Mark shared between QoS and PBR | `/ip firewall mangle print detail` | the same `connection-mark` feeding both the `packet-mark` of a queue **and** the `routing-mark` of a route policy: touching one changes the other. (`packet-mark` alone does not route) | MEDIUM |
 | Drop log without limit | `/ip firewall filter print detail stats where log=yes`, and separately `/ip firewall raw print detail where log=yes` | drop rule with `log=yes` and no `limit`: under attack the log itself saturates CPU, disk and syslog — a DoS the device applies to itself | HIGH |
 | Critical drop without evidence | same commands | no relevant drop with `log=yes` where the policy requires intrusion evidence. Common and acceptable on a core | LOW |
+
+## 2. Port knocking
+
+Measured on RouterOS 7.25.1: a rule without `address-list-timeout` does not show the field in `print detail`.
+
+| Check | Read command | Characterises a failure | Sev. |
+|---|---|---|---|
+| Stage without expiry | `/ip firewall filter print detail where action=add-src-to-address-list` + `/ip firewall filter print count-only where action=add-src-to-address-list and !address-list-timeout` | a knock stage with no `address-list-timeout`: the source stays in the stage list, and later attempts need only the remaining steps | MEDIUM |
+| Stage not chained | `/ip firewall filter print detail where action=add-src-to-address-list` | a stage after the first without `src-address-list=<previous stage>`: one packet to that port opens the next stage, and the sequence collapses into a single port | MEDIUM |
+| Protected port not closed | `/ip firewall filter print detail where chain=input` + `/ip service print proplist=name,port,disabled,available-from` | following the rule order, no drop of the protected port for sources outside the final list, or an earlier `accept` (the `LAN` list, a broad accept) that reaches the port first: the knock protects nothing | MEDIUM |
+| Final list kept for days | the detail above + `/ip firewall address-list print count-only where list=<final list>` | final stage with a timeout of days (course material uses `1d`): an address that knocked once, behind shared NAT or CGNAT, keeps the door open for everyone behind it | LOW |
+| Predictable sequence | `/ip firewall filter print detail where action=add-src-to-address-list` | knock ports in ascending order or next to each other: a sequential port scan runs the sequence by accident | LOW |
