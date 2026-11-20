@@ -19,4 +19,4 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 - **Never use `/radius print detail` or retrieve RADIUS/PPP/User Manager secret values.** Use only safe `proplist` fields. Secret strength is intentionally outside the scope of agent-assisted audit.
 - **A single RADIUS stops every RADIUS-based login** — subscribers and RADIUS-authenticated admins. Local users still log in, so it is availability, not lockout.
-- PPP tunnel and PPPoE server hardening is in `vpn`.
+- PPP tunnel and PPPoE server hardening is in `vpn/ppp` and `vpn/pppoe`.

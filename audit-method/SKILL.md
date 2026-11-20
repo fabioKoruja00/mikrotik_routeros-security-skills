@@ -106,7 +106,6 @@ devices, not one item per device.
 | `layer2` | MNDP, bridge, VLAN, STP |
 | `dhcp` | DHCP server and client |
 | `ip-settings` | /ip settings (print-only values) |
-| `vpn` | Quick Set and Back To Home, not yet split |
 | `vpn/wireguard` | WireGuard interfaces and peers |
 | `vpn/zerotier` | ZeroTier instances, networks and controllers |
 | `vpn/ipsec` | IPsec profiles, proposals, peers, policies |
@@ -118,6 +117,7 @@ devices, not one item per device.
 | `vpn/ppp` | PPP profiles, secrets and accounting |
 | `vpn/eoip` | EoIP and EoIPv6 tunnels |
 | `vpn/vxlan` | VXLAN interfaces, VTEPs and FDB |
+| `vpn/back-to-home` | Back To Home and Quick Set remote access |
 | `qos` | queues with a security effect |
 | `ipv6` | IPv6 stack, firewall, RA/ND, DHCPv6, transition |
 | `ospf` | OSPF |

@@ -6,7 +6,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Server without a certificate | `/interface sstp-server server print proplist=enabled,port,certificate,tls-version,ciphers,pfs,verify-client-certificate,authentication,default-profile` | `enabled=yes` with `certificate=none` (the default): no client can verify who it talks to | HIGH |
+| Server without a certificate | `:put [/interface sstp-server server get <field>]` for `enabled`, `port`, `certificate`, `tls-version`, `ciphers`, `pfs`, `verify-client-certificate`, `authentication`, `default-profile` | `enabled=yes` with `certificate=none` (the default): no client can verify who it talks to | HIGH |
 | Old TLS accepted | same command | `tls-version=any` (default) instead of `only-1.2` or `only-1.3` | MEDIUM |
 | Weak cipher set or no PFS | same command | `ciphers` without a GCM suite, or `pfs=no` (default): captured sessions decrypt if the server key leaks | LOW |
 | Cleartext PPP authentication inside | same command | `authentication` containing `pap` (the default is all four): the TLS layer protects it in transit, but a client that skips verification hands the password to an impostor | MEDIUM |

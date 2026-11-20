@@ -17,7 +17,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks.
+- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks. The server is a settings menu: `print proplist` fails there on 7.25.1, so read each field with `get`.
 - **The client verifies nothing by default.** Measured: a new client is `verify-server-certificate=no`, `tls-version=any`, `ciphers=aes256-sha`, `pfs=no`, `authentication=pap,chap,mschap1,mschap2`.
 - **v7 has no `force-aes`.** The server and client negotiate from `ciphers`; measured: the client default `aes256-sha` made a server offering GCM settle on `AES256-CBC`.
 - **The server shows up in `/ip service` as dynamic `sstp-server` on its port** (443 by default, the same port as `www-ssl` and `reverse-proxy`).
