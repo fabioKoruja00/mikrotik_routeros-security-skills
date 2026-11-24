@@ -18,7 +18,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 ## Traps
 
 - **A plain `print` of a client shows `password`, and `show-sensitive` exposes secrets.** Use the `proplist` in the checks; never `show-sensitive` in `print` or `export`.
-- **`accept-empty-service` is hidden while it is `yes`.** Measured on 7.25.1: `print detail` shows it only after it is set to `no`, and `get` returns empty. Absence in the output means the concentrator accepts clients that name no service.
+- **`accept-empty-service` is hidden while it is `yes`.** Measured on 7.25.2: `print detail` shows it only after it is set to `no`, and `get` returns empty. Absence in the output means the concentrator accepts clients that name no service.
 - **Empty `encoding` is normal for PPPoE.** It has no encryption by design; that is not a finding here.
 - **`caller-id` is the client's MAC address**, not an IP.
 - **IPv6 rides inside the session** (measured: DHCPv6-PD bound over PPPoE). The concentrator's IPv6 firewall applies to every subscriber prefix.
