@@ -18,7 +18,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 ## Traps
 
 - **Static VTEPs are not an access list.** A VTEP left out of `/interface vxlan vteps` still gets its frames accepted and its MAC learned into the FDB; only the firewall decides who reaches the port.
-- **Read `port` on each interface.** The default on 7.25.1 is 4789; older course material uses 8472. Several interfaces can share one port, separated by VNI.
+- **Read `port` on each interface.** The default on 7.25.2 is 4789; older course material uses 8472. Several interfaces can share one port, separated by VNI.
 - **Interface counters undercount with fast path.** `/interface print stats` showed a fraction of the packets that crossed a working tunnel; a low or zero count does not prove the tunnel is idle.
 - **Tunnel names come from `/interface vxlan print proplist=name`.** A filter on the string `vxlan` misses renamed interfaces.
 - Bridge-wide controls (RSTP, horizon, DHCP snooping) are in `layer2`; IPsec proposals and peers in `vpn/ipsec`; WireGuard in `vpn/wireguard`.
