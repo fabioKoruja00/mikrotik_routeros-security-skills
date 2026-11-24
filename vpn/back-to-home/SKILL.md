@@ -18,10 +18,10 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 ## Traps
 
 - **Never run `/ip cloud print`, `show-client-config`, or `get` on `vpn-private-key`, `vpn-peer-private-key`, `vpn-wireguard-client-config` or `vpn-wireguard-client-config-qrcode`.** `/ip cloud back-to-home-user` also holds `private-key`. Read named fields only.
-- **The menu is `/ip cloud back-to-home-user`, singular, on 7.25.1.** The plural form returns `bad command name`; files shared over BTH are in `/ip cloud back-to-home-file`.
+- **The menu is `/ip cloud back-to-home-user`, singular, on 7.25.2.** The plural form returns `bad command name`; files shared over BTH are in `/ip cloud back-to-home-file`.
 - **Enabling BTH injects dynamic rules at the top of the firewall,** IPv4 and IPv6: input `accept` on the BTH UDP port from any source, forward `drop` for restricted peers, and a `masquerade` for the tunnel. The owner's own input drop never sees that port.
 - **`allow-lan=no` is narrower than it sounds.** It is a forward drop towards `out-interface-list=LAN` only: the router itself and networks outside the `LAN` list stay reachable unless the firewall says otherwise.
 - **Enabling BTH creates a peer before any user exists.** It is the router-level client whose private key the router keeps; a BTH peer is not proof of a registered person.
-- **A server menu such as `/interface l2tp-server server` takes `get`, not `print proplist`,** on 7.25.1.
+- **A server menu such as `/interface l2tp-server server` takes `get`, not `print proplist`,** on 7.25.2.
 - **Back To Home asks for the administrative credential** to build the tunnel. An unknown WireGuard peer is remote access nobody registered.
 - WireGuard interfaces other than BTH are in `vpn/wireguard`; L2TP, PPTP and SSTP servers in detail in their own skills; the PPP layer in `vpn/ppp`.
