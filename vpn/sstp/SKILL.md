@@ -17,9 +17,10 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks. The server is a settings menu: `print proplist` fails there on 7.25.1, so read each field with `get`.
+- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks. The server is a settings menu: `print proplist` fails there on 7.25.2, so read each field with `get`.
 - **The client verifies nothing by default.** Measured: a new client is `verify-server-certificate=no`, `tls-version=any`, `ciphers=aes256-sha`, `pfs=no`, `authentication=pap,chap,mschap1,mschap2`.
 - **v7 has no `force-aes`.** The server and client negotiate from `ciphers`; measured: the client default `aes256-sha` made a server offering GCM settle on `AES256-CBC`.
 - **The server shows up in `/ip service` as dynamic `sstp-server` on its port** (443 by default, the same port as `www-ssl` and `reverse-proxy`).
 - **SSTP runs over IPv6 transport** (measured: client to an IPv6 server address, session up). Read both input chains.
+- **Before 7.25.2, a certificate renewed by ACME is not picked up by the services using it.** On older versions compare the certificate the server presents with the one in `/certificate`.
 - Certificate validity, key and chain are audited in `certificates`; PPP profiles and secrets in `ppp`.
