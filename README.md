@@ -18,7 +18,7 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`layer2`](layer2/) | MNDP, neighbor table, DHCP snooping, RA Guard, horizon, BPDU guard, STP, bridge filters and hardware offload, VLAN filtering, PVID, MAC limits. |
 | [`dhcp`](dhcp/) | DHCP server alerts, pool exhaustion, static leases, add-arp, lease scripts, DHCP client trust. |
 | [`ip-settings`](ip-settings/) | `/ip settings` values that only show in print: rp-filter, redirects, source route, forwarding, ARP limits, ICMP rate. |
-| [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `pppoe`, `ppp`, `eoip`, `vxlan`, `back-to-home` (Back To Home and Quick Set). Port knocking is in `firewall`. |
+| [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `pppoe`, `ppp`, `eoip`, `ipip`, `vxlan`, `back-to-home` (Back To Home and Quick Set). Port knocking is in `firewall`. |
 | [`qos`](qos/) | Queues with a security effect: management priority, guarantees, PCQ, dead queues, dynamic queues, bufferbloat. |
 | [`ipv6`](ipv6/) | IPv6 stack, RA/ND, IPv6 firewall, DHCPv6/PD, IPv6 routing, transition, addressing, extension headers. |
 | [`ospf`](ospf/) | OSPF neighborship, network types, areas, redistribution, PPPoE /32 flood, v6↔v7 menu map. |

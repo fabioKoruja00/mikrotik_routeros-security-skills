@@ -21,6 +21,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **EoIPv6 is not GRE.** It travels as IPv6 next header 97, named `etherip` in the IPv6 firewall and in `/ip ipsec policy`. A filter on `protocol=gre` misses it. The IPsec objects of both menus live under `/ip ipsec`.
 - **The running flag reports keepalive, not traffic.** A tunnel with `R` can still receive nothing: compare `rx-byte` in `/interface print stats`. Without keepalive (unset, the field disappears from `print`) the flag never drops.
 - **An established IPsec SA does not prove the tunnel.** After decryption the GRE or EtherIP packet goes through the input chain again; a drop there leaves the SA up and the tunnel empty.
+- **A secret never set is not an empty secret.** `where ipsec-secret=""` matches only a secret that was set and then cleared; a tunnel created without one matches only `where !ipsec-secret` (7.25.2). Count both.
 - **Clearing `ipsec-secret` does not remove the IPsec.** The dynamic peer and policy stay, and fast path stays blocked, until the tunnel is removed. Read the dynamic policies before trusting `ipsec-secret=""`.
 - **IPsec requires `allow-fast-path=no` on `/interface eoip`.** `/interface eoipv6` has no such property.
 - **`tunnel-id` ranges differ.** `/interface eoip` accepts up to 65535; `/interface eoipv6` stops at 4095 on 7.25.1.
