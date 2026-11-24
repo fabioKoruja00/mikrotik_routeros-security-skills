@@ -17,7 +17,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks. The server is a settings menu: `print proplist` fails there on 7.25.1, so read each field with `get`.
+- **A plain `print` of a client shows `password`.** Use the `proplist` in the checks. The server is a settings menu: `print proplist` fails there on 7.25.2, so read each field with `get`.
 - **PPTP has no IPv6 transport.** Measured: a client with an IPv6 `connect-to` is refused (`bad address or dns name`). IPv6 still flows inside the PPP session (measured: DHCPv6-PD bound over PPTP), so the tunnel exposes IPv6 networks too.
 - **`use-encryption=required` only forces MPPE.** It does not make PPTP safe.
 - **The `pptp` service-port is a NAT helper for clients behind the router**, not a PPTP server.
