@@ -22,4 +22,6 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **`proposal-check=obey` lets the initiator pick the lifetime.** It is the default and only matters together with long lifetimes.
 - **Masquerade without an exception swallows the tunnel traffic** before the policy sees it. The fix is an accept, or `ipsec-policy=out,none` on the masquerade, ahead of it — audited in `firewall`.
 - **The factory IPv6 input chain accepts IKE, ESP and AH from anywhere** even with no IPsec configured. Count it on devices that never terminate IPsec.
+- **On 7.25 and 7.25.1 a policy can stay `invalid` after another policy is added** (fixed in 7.25.2). Read the version before reporting an invalid policy as a configuration error.
+- **Before 7.25.2, opening installed SAs in WinBox drops IKEv2 peers.** Read them over CLI or API.
 - L2TP/IPsec servers are in `l2tp`; certificates used by identities are in `certificates`.
