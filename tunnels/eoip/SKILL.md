@@ -17,7 +17,7 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-Measured on 7.25.2 with an EoIP tunnel between two routers; EoIPv6 by menu only.
+Measured on 7.25.2 with EoIP and EoIPv6 tunnels between two routers, carrying IPv4 and IPv6.
 
 - **Never run `print detail` or `export show-sensitive` on `/interface eoip` or `/interface eoipv6`.** `ipsec-secret` is a sensitive field. Use the `proplist` in the checks and `count-only` for presence.
 - **EoIPv6 is not GRE.** It travels as IPv6 next header 97, named `etherip` in the IPv6 firewall and in `/ip ipsec policy`. A filter on `protocol=gre` misses it. The IPsec objects of both menus live under `/ip ipsec`.
@@ -25,8 +25,9 @@ Measured on 7.25.2 with an EoIP tunnel between two routers; EoIPv6 by menu only.
 - **An established IPsec SA does not prove the tunnel.** After decryption the GRE or EtherIP packet goes through the input chain again; a drop there leaves the SA up and the tunnel empty.
 - **A secret never set is not an empty secret.** `where ipsec-secret=""` matches only a secret that was set and then cleared; a tunnel created without one matches only `where !ipsec-secret`. Count both.
 - **Clearing `ipsec-secret` does not remove the IPsec.** The dynamic peer and policy stay, and fast path stays blocked, until the tunnel is removed. Read the dynamic policies before trusting `ipsec-secret=""`.
-- **The IPsec policy binds the input from the remote only.** With a secret on the receiver only, plaintext from the remote is dropped. The policy names only the remote's address.
-- **`mtu=auto` gives `actual-mtu` 1458**, 65494 with a secret and no SA, 1416 with the SA established.
+- **The IPsec policy binds the input on EoIP, not on EoIPv6.** With a secret on the receiver only, plaintext EoIP from the remote was dropped, but plaintext EoIPv6 was decapsulated. The policy names only the remote's address.
+- **An EoIPv6 that never comes up may be the platform.** On a hAP ax³, plaintext EoIPv6 never reached the tunnel, while with IPsec on both ends it worked both ways.
+- **`mtu=auto` gives `actual-mtu` 1458**, 65494 with a secret and no SA, 1416 with the SA established. EoIPv6 read 1444 with a secret and no SA, 1406 with the SA.
 - **IPsec requires `allow-fast-path=no` on `/interface eoip`.** `/interface eoipv6` has no such property.
 - **`tunnel-id` ranges differ.** `/interface eoip` accepts up to 65535; `/interface eoipv6` stops at 4095 on 7.25.2.
 - The dynamic peer uses the `default` proposal; its algorithms are audited in `vpn/ipsec`. Bridge-wide controls (RSTP, horizon, DHCP snooping) are in `layer2`.
