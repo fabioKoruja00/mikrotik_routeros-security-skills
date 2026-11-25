@@ -26,7 +26,6 @@ Measured on 7.25.2 with EoIP and EoIPv6 tunnels between two routers, carrying IP
 - **A secret never set is not an empty secret.** `where ipsec-secret=""` matches only a secret that was set and then cleared; a tunnel created without one matches only `where !ipsec-secret`. Count both.
 - **Clearing `ipsec-secret` does not remove the IPsec.** The dynamic peer and policy stay, and fast path stays blocked, until the tunnel is removed. Read the dynamic policies before trusting `ipsec-secret=""`.
 - **The IPsec policy binds the input on EoIP, not on EoIPv6.** With a secret on the receiver only, plaintext EoIP from the remote was dropped, but plaintext EoIPv6 was decapsulated. The policy names only the remote's address.
-- **An EoIPv6 that never comes up may be the platform.** On a hAP ax³, plaintext EoIPv6 never reached the tunnel, while with IPsec on both ends it worked both ways.
 - **`mtu=auto` gives `actual-mtu` 1458**, 65494 with a secret and no SA, 1416 with the SA established. EoIPv6 read 1444 with a secret and no SA, 1406 with the SA.
 - **IPsec requires `allow-fast-path=no` on `/interface eoip`.** `/interface eoipv6` has no such property.
 - **`tunnel-id` ranges differ.** `/interface eoip` accepts up to 65535; `/interface eoipv6` stops at 4095 on 7.25.2.
