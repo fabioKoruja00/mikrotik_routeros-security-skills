@@ -20,6 +20,9 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **A plain `print` of a client shows `password`, and `show-sensitive` exposes secrets.** Use the `proplist` in the checks; never `show-sensitive` in `print` or `export`.
 - **`accept-empty-service` is hidden while it is `yes`.** Measured on 7.25.2: `print detail` shows it only after it is set to `no`, and `get` returns empty. Absence in the output means the concentrator accepts clients that name no service.
 - **Empty `encoding` is normal for PPPoE.** It has no encryption by design; that is not a finding here.
-- **`caller-id` is the client's MAC address**, not an IP.
+- **`caller-id` is the client's MAC address**, not an IP, and the client chooses it. A secret bound to a `caller-id` refused another MAC (logged `called from ..., but was expected from ...`) and accepted the client once its interface took the bound MAC: the binding narrows mistakes, it does not authenticate.
+- **`keepalive-timeout=0` keeps dead sessions.** With the factory 10 a client that vanished without PADT left in under 21 s; with 0 its session and address were still active after 113 s.
+- **`one-session-per-host=yes` does not end sessions already up**, and afterwards a new session from the same MAC replaces the older one: two clients behind one MAC keep taking turns.
+- **`max-mtu` and `max-mru` default to `auto`.** Over a 1458-byte link they negotiated 1450; the documentation states 1460.
 - **IPv6 rides inside the session** (measured: DHCPv6-PD bound over PPPoE). The concentrator's IPv6 firewall applies to every subscriber prefix.
 - PPP profiles, secrets and RADIUS are in `vpn/ppp` and `aaa`.
