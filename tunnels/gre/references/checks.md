@@ -19,7 +19,7 @@ Tunnel names come from `/interface gre print proplist=name` and `/interface gre6
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
 | Tunnel trusted as LAN | `/interface list member print proplist=list,interface,disabled` + `/ip firewall filter print stats where chain=input` + `/ipv6 firewall filter print stats where chain=input` | the tunnel in the `LAN` list or any list the input chain accepts wholesale (`accept in-interface-list=LAN`, `drop in-interface-list=!LAN`): the remote site, or whoever forges it on a tunnel without cipher, reaches the router's management services | MEDIUM |
-| MSS and MTU | `/interface gre print proplist=name,mtu,actual-mtu,clamp-tcp-mss` + `/interface gre6 print proplist=name,mtu,actual-mtu,clamp-tcp-mss` | `clamp-tcp-mss=no` with the reduced MTU: TCP sessions through the tunnel hang on large packets wherever PMTUD is blocked. IPv6 carried in a tunnel below 1280 breaks outright. With IPsec, `actual-mtu` reads 65512 and proves nothing | LOW |
+| MSS and MTU | `/interface gre print proplist=name,mtu,actual-mtu,clamp-tcp-mss` + `/interface gre6 print proplist=name,mtu,actual-mtu,clamp-tcp-mss` | `clamp-tcp-mss=no` with the reduced MTU: TCP sessions through the tunnel hang on large packets wherever PMTUD is blocked. IPv6 carried in a tunnel below 1280 breaks outright. With a secret and no SA, `actual-mtu` reads 65512 and proves nothing | LOW |
 
 ## 3. Firewall
 

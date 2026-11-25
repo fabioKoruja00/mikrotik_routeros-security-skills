@@ -120,6 +120,7 @@ devices, not one item per device.
 | `tunnels/gre` | GRE and GRE6 tunnels |
 | `tunnels/ipip` | IPIP and IPIPv6 tunnels |
 | `tunnels/vxlan` | VXLAN interfaces, VTEPs and FDB |
+| `tunnels/6to4` | 6to4 and 6in4 tunnels |
 | `qos` | queues with a security effect |
 | `ipv6` | IPv6 stack, firewall, RA/ND, DHCPv6, transition |
 | `ospf` | OSPF |

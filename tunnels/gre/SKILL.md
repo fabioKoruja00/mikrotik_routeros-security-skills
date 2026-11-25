@@ -23,5 +23,5 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The running flag reports keepalive, not traffic.** Without keepalive a dead peer does not drop it. Compare `rx-byte` in `/interface print stats`.
 - **Clearing `ipsec-secret` does not remove the IPsec.** The dynamic peer, identity and policy stay until the tunnel is removed, and `allow-fast-path=yes` is still refused. Read the dynamic policies before trusting an empty secret.
 - **IPsec requires `allow-fast-path=no` on `/interface gre`.** The router refuses the secret otherwise. `/interface gre6` has neither `allow-fast-path` nor `dscp`.
-- **`actual-mtu` lies once IPsec is up.** `mtu=auto` gives 1476 on GRE and 1456 on GRE6; after the IPsec on a GRE tunnel comes up, `actual-mtu` reads 65512. Judge the MTU from `mtu` and the path; IPv6 inside needs at least 1280 (`ipv6`).
+- **`actual-mtu` lies while the IPsec has no SA.** `mtu=auto` gives 1476 on GRE and 1456 on GRE6; with `ipsec-secret` set on a GRE tunnel whose remote does not answer, `actual-mtu` reads 65512. Judge the MTU from `mtu` and the path; IPv6 inside needs at least 1280 (`ipv6`).
 - The dynamic peer uses the `default` profile and proposal; their algorithms are audited in `vpn/ipsec`. IPIP tunnels have their own menu (`tunnels/ipip`).

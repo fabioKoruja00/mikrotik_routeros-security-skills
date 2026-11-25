@@ -81,14 +81,15 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 
 ## 6. Transition and tunnels
 
+6to4 and 6in4 tunnels (`/interface 6to4`) are audited in `tunnels/6to4`.
+
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| 6to4 active without use | `/interface 6to4 print proplist=name,local-address,remote-address,disabled,running,comment` | tunnel enabled where native IPv6 exists — unauthenticated path ending at a third-party relay | MEDIUM |
 | Protocol 41 allowed | `/ip firewall filter print where protocol=ipv6-encap` | IPv6 entering inside IPv4, escaping the v6 policy | MEDIUM |
 | Teredo in use | `/ipv6 route print count-only where dst-address in 2001::/32` and `/ip firewall connection print count-only where protocol=udp and dst-port=3544` | route or traffic to `2001::/32` on a network that does not use Teredo: an internal host punching through the egress policy | LOW |
-| v6 tunnel without cipher | `/interface gre6 print proplist=name,local-address,remote-address,disabled` (same for `ipipv6`, `eoipv6`, `6to4`) + `count-only where ipsec-secret="" or !ipsec-secret` + `/ip ipsec policy print count-only` | empty `ipsec-secret` and no IPsec policy covering the pair: the traffic (including the IPv4 carried inside) travels in the clear. Never `print detail` here — it shows the secret | MEDIUM |
-| Open endpoint | same commands + `/interface 6to4 print count-only where remote-address=unspecified` + `/ipv6 firewall filter print where protocol=gre` (and `protocol=ipv6-encap` for `ipipv6`) + `/ip firewall filter print where protocol=ipv6-encap` | generic `remote-address` (on 6to4, `unspecified`: protocol 41 from any IPv4 host is decapsulated, so forged IPv6 gets in), or accept of GRE/IPIP/protocol 41 without restricting the peer's source | HIGH |
-| MSS not adjusted | `/interface gre6 print proplist=name,mtu,actual-mtu,clamp-tcp-mss,disabled` (same for `ipipv6`, `eoipv6` and `6to4`) | `clamp-tcp-mss=no` with a reduced MTU: TCP sessions hang intermittently and become a "ghost problem". An `mtu` below 1280 breaks IPv6 outright | LOW |
+| v6 tunnel without cipher | `/interface gre6 print proplist=name,local-address,remote-address,disabled` (same for `ipipv6`, `eoipv6`) + `count-only where ipsec-secret="" or !ipsec-secret` + `/ip ipsec policy print count-only` | empty `ipsec-secret` and no IPsec policy covering the pair: the traffic (including the IPv4 carried inside) travels in the clear. Never `print detail` here — it shows the secret | MEDIUM |
+| Open endpoint | same commands + `/ipv6 firewall filter print where protocol=gre` (and `protocol=ipv6-encap` for `ipipv6`) | generic `remote-address`, or accept of GRE/IPIP without restricting the peer's source | HIGH |
+| MSS not adjusted | `/interface gre6 print proplist=name,mtu,actual-mtu,clamp-tcp-mss,disabled` (same for `ipipv6` and `eoipv6`) | `clamp-tcp-mss=no` with a reduced MTU: TCP sessions hang intermittently and become a "ghost problem". An `mtu` below 1280 breaks IPv6 outright | LOW |
 
 ## 7. Addressing plan with a security effect
 

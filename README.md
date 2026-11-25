@@ -19,7 +19,7 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`dhcp`](dhcp/) | DHCP server alerts, pool exhaustion, static leases, add-arp, lease scripts, DHCP client trust. |
 | [`ip-settings`](ip-settings/) | `/ip settings` values that only show in print: rp-filter, redirects, source route, forwarding, ARP limits, ICMP rate. |
 | [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `ppp`, `back-to-home` (Back To Home and Quick Set). Port knocking is in `firewall`. |
-| [`tunnels`](tunnels/) | Category, one skill per type of tunnel without its own encryption: `pppoe`, `gre`, `ipip`, `eoip`, `vxlan`. |
+| [`tunnels`](tunnels/) | Category, one skill per type of tunnel without its own encryption: `pppoe`, `gre`, `ipip`, `eoip`, `vxlan`, `6to4`. |
 | [`qos`](qos/) | Queues with a security effect: management priority, guarantees, PCQ, dead queues, dynamic queues, bufferbloat. |
 | [`ipv6`](ipv6/) | IPv6 stack, RA/ND, IPv6 firewall, DHCPv6/PD, IPv6 routing, transition, addressing, extension headers. |
 | [`ospf`](ospf/) | OSPF neighborship, network types, areas, redistribution, PPPoE /32 flood, v6↔v7 menu map. |

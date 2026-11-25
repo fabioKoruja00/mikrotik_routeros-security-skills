@@ -1,6 +1,6 @@
 ---
 name: ipv6
-description: "Read-only IPv6 security audit of MikroTik RouterOS: stack state, Router Advertisement and Neighbor Discovery, the IPv6 firewall (ICMPv6 by type, link-local and multicast, bogons, RAW), DHCPv6 and prefix delegation, IPv6 routing (BGP, OSPFv3), transition mechanisms (6to4, protocol 41, Teredo, GRE6/IPIPv6/EoIPv6), addressing plan and extension headers, plus the nuances that generate false positives. This skill should be used when a RouterOS device has IPv6 enabled (the v7 default) and its exposure must be assessed without changing configuration."
+description: "Read-only IPv6 security audit of MikroTik RouterOS: stack state, Router Advertisement and Neighbor Discovery, the IPv6 firewall (ICMPv6 by type, link-local and multicast, bogons, RAW), DHCPv6 and prefix delegation, IPv6 routing (BGP, OSPFv3), transition mechanisms (protocol 41, Teredo, GRE6/IPIPv6/EoIPv6; 6to4 tunnels in `tunnels/6to4`), addressing plan and extension headers, plus the nuances that generate false positives. This skill should be used when a RouterOS device has IPv6 enabled (the v7 default) and its exposure must be assessed without changing configuration."
 ---
 
 # IPv6
@@ -24,6 +24,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Do not treat IPv6 NAT as the security boundary.** If NAT66/masquerade exists, removing it before the `forward` policy is ready can change reachability; fix the firewall policy first.
 - **`no-dad=yes` is legitimate on an anycast address.**
 - **A rule against next-header `50`/`51` "to filter extension headers" kills IPsec** — those are ESP and AH.
-- **An empty 6to4 `remote-address` reads `unspecified`.** `where !remote-address` matches nothing; count `where remote-address=unspecified`.
-- **6to4 has no keepalive by default**, unlike GRE6 and IPIPv6: the running flag stays up with the remote dead.
-- **`ipsec-secret` on a 6to4 with `remote-address` unspecified** creates a dynamic peer `0.0.0.0/32` and a wildcard policy `0.0.0.0/0` to `0.0.0.0/0` `ipv6-encap`, flagged invalid. Read it as a broken setup, not as protection.
