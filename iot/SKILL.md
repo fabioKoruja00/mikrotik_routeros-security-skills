@@ -21,4 +21,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Menus exist without the hardware.** LoRa, Bluetooth and the Modbus serial port only work on models that have them; a configuration there on a device without the radio or port is inert, so lower the severity and say why.
 - **Modbus ships with `disable-security-rules=yes`.** The rule list is ignored until that flag is `no`, so rules present do not mean filtering.
 - Scripts and scheduler in general are in `scripts-storage`.
-</content>

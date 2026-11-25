@@ -22,4 +22,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The package needs `device-mode` `zerotier=yes`.** On `home` and `basic` modes the menu is absent even with the package installed.
 - **The UDP ports show in `/ip service` as dynamic `zerotier-one`**: `port` (9993) plus two random ones, only while the instance runs, and they linger briefly after `disable`. ZeroTier needs them to reach its roots; exposure is about what the overlay reaches, not the ports.
 - The instance contacts ZeroTier's root servers on the Internet (`role=PLANET` peers). That is normal; a controller-only router still depends on them.
-</content>

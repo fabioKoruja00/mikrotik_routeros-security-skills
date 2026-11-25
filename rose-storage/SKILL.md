@@ -22,4 +22,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The services show in `/ip service` as dynamic entries** (`smb` 445, `smb-netbios` 137/138, `iscsi` 3260) with no `available-from`. `/ip smb interfaces` is the only built-in scoping; the per-disk `*-address` fields belong to client disks, not exports. The input chain does the rest.
 - **Block export and file sharing are exclusive per disk.** A disk with `iscsi-export=yes` cannot have SMB, NFS or DLNA at the same time, so a disk showing both is impossible — re-read before reporting.
 - Unplanned disks and the package itself are in `scripts-storage`.
-</content>

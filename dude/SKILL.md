@@ -22,4 +22,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The syslog listener shows in `/ip service` as dynamic `dudes` on UDP 514** with no `available-from`. Judge it from the input chain.
 - **The CLI shows only names under `/dude device`, `agent`, `probe` and `notification`.** Devices, credentials and notification actions are managed from the Dude client; the audit sees the inventory, not the settings.
 - Who may log in through Winbox is in `access`.
-</content>

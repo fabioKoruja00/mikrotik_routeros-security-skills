@@ -24,4 +24,4 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Clearing `ipsec-secret` does not remove the IPsec.** The dynamic peer, identity and policy stay until the tunnel is removed. Read the dynamic policies before trusting an empty secret.
 - **IPsec requires `allow-fast-path=no` on `/interface ipip`.** The router refuses the secret otherwise. `/interface ipipv6` has no such property.
 - **`mtu=auto` is the default**, giving `actual-mtu` 1480 on IPIP and 1460 on IPIPv6; IPv6 inside needs at least 1280 (`ipv6`).
-- The dynamic peer uses the `default` profile and proposal; their algorithms are audited in `vpn/ipsec`. GRE tunnels have their own menu.
+- The dynamic peer uses the `default` profile and proposal; their algorithms are audited in `vpn/ipsec`. GRE tunnels have their own menu (`vpn/gre`).

@@ -116,6 +116,7 @@ devices, not one item per device.
 | `vpn/pppoe` | PPPoE concentrators and clients |
 | `vpn/ppp` | PPP profiles, secrets and accounting |
 | `vpn/eoip` | EoIP and EoIPv6 tunnels |
+| `vpn/gre` | GRE and GRE6 tunnels |
 | `vpn/ipip` | IPIP and IPIPv6 tunnels |
 | `vpn/vxlan` | VXLAN interfaces, VTEPs and FDB |
 | `vpn/back-to-home` | Back To Home and Quick Set remote access |

@@ -18,7 +18,7 @@ para agentes de IA (Claude Code, ChatGPT Skills e carregadores compatíveis). Um
 | [`layer2`](layer2/) | MNDP, tabela de vizinhos, DHCP snooping, RA Guard, horizon, BPDU guard, STP, filtro de bridge e hardware offload, VLAN filtering, PVID, limite de MAC. |
 | [`dhcp`](dhcp/) | Alertas do servidor DHCP, esgotamento de pool, lease estático, add-arp, lease script, confiança do cliente DHCP. |
 | [`ip-settings`](ip-settings/) | Valores de `/ip settings` que só aparecem no print: rp-filter, redirects, source route, forwarding, limite de ARP, taxa de ICMP. |
-| [`vpn`](vpn/) | Categoria, uma skill por tipo: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `pppoe`, `ppp`, `eoip`, `ipip`, `vxlan`, `back-to-home` (Back To Home e Quick Set). Port knocking fica na `firewall`. |
+| [`vpn`](vpn/) | Categoria, uma skill por tipo: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `pppoe`, `ppp`, `eoip`, `gre`, `ipip`, `vxlan`, `back-to-home` (Back To Home e Quick Set). Port knocking fica na `firewall`. |
 | [`qos`](qos/) | Filas com efeito de segurança: prioridade da gerência, garantias, PCQ, fila morta, filas dinâmicas, bufferbloat. |
 | [`ipv6`](ipv6/) | Pilha IPv6, RA/ND, firewall IPv6, DHCPv6/PD, roteamento IPv6, transição, endereçamento, cabeçalhos de extensão. |
 | [`ospf`](ospf/) | Vizinhança OSPF, tipos de rede, áreas, redistribuição, enxurrada de /32 do PPPoE, mapa de menus v6↔v7. |

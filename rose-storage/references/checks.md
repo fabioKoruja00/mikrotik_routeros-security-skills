@@ -33,4 +33,3 @@ The `/disk` fields without `server` (`iscsi-address`, `iscsi-iqn`, `nfs-address`
 | File-backed disk on internal flash | `/disk print proplist=slot,type,file-path,file-size where type=file` + `/disk print proplist=slot,type,model,size` | a file disk whose `file-path` is on the internal flash rather than an SD or USB disk: share writes wear it, and a full flash takes the router configuration down with it | MEDIUM |
 | Data at rest without encryption | `/disk print proplist=slot,type,model,crypted-backend,self-encryption` + `/disk print count-only where encryption-key=""` | removable disk holding shared data with no encryption: physical theft gives the data | LOW |
 | Degraded RAID | `/disk print proplist=slot,type,raid-type,raid-master,raid-role,raid-member-failed` | `raid-member-failed=yes` or a member missing: the next failure loses the array | MEDIUM |
-</content>

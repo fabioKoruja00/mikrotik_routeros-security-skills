@@ -22,4 +22,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The listen port shows in `/ip service` as dynamic `wireguard-<interface>`.** WireGuard answers nothing to a packet without a valid key, so the open port alone is not a finding.
 - **Pick test addresses only after reading every `allowed-address`.** An overlap between interfaces or peers steers traffic to the wrong tunnel; 7.24 and later warn about it on the same interface only.
 - Back To Home tunnels are in `back-to-home`.
-</content>
