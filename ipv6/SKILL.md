@@ -24,3 +24,6 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Do not treat IPv6 NAT as the security boundary.** If NAT66/masquerade exists, removing it before the `forward` policy is ready can change reachability; fix the firewall policy first.
 - **`no-dad=yes` is legitimate on an anycast address.**
 - **A rule against next-header `50`/`51` "to filter extension headers" kills IPsec** — those are ESP and AH.
+- **An empty 6to4 `remote-address` reads `unspecified`.** `where !remote-address` matches nothing; count `where remote-address=unspecified`.
+- **6to4 has no keepalive by default**, unlike GRE6 and IPIPv6: the running flag stays up with the remote dead.
+- **`ipsec-secret` on a 6to4 with `remote-address` unspecified** creates a dynamic peer `0.0.0.0/32` and a wildcard policy `0.0.0.0/0` to `0.0.0.0/0` `ipv6-encap`, flagged invalid. Read it as a broken setup, not as protection.
