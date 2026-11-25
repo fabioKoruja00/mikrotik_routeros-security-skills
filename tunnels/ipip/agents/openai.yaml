@@ -1,0 +1,3 @@
+interface:
+  display_name: "IPIP"
+  short_description: "Audit IPIP and IPIPv6 tunnels: cipher, reach, firewall, keepalive."

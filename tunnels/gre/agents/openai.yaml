@@ -1,0 +1,3 @@
+interface:
+  display_name: "GRE"
+  short_description: "Audit GRE and GRE6 tunnels: cipher, reach, firewall, keepalive."

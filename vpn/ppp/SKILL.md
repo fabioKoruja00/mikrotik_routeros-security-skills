@@ -21,4 +21,4 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Factory values, measured.** Profile `default`: `use-encryption=default`, `only-one=default`, no `interface-list`. Profile `default-encryption`: `use-encryption=yes`. A new secret: `service=any`, `profile=default`. `/ppp aaa`: `use-radius=no`, `accounting=yes`, `interim-update=0s`, `enable-ipv6-accounting=no`.
 - **`on-up` and `on-down` run as scripts on every session.** Read their content only through `scripts-storage` rules; here, presence is the finding.
 - **With RADIUS, local secrets stop being the policy but are still checked first.** `only-one` on the effective profile keeps applying to RADIUS users. Read `/ppp aaa` before judging secrets.
-- Service-specific settings are in `pptp`, `l2tp`, `sstp`, `ovpn` and `pppoe`; RADIUS servers in `aaa`.
+- Service-specific settings are in `pptp`, `l2tp`, `sstp`, `ovpn` and `tunnels/pppoe`; RADIUS servers in `aaa`.

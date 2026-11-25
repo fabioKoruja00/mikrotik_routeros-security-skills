@@ -24,4 +24,4 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
 | No interim accounting | `/ppp aaa print` | `use-radius=yes` with `interim-update=0s` (default): sessions leave no periodic trail for identifying a subscriber by address and time. `enable-ipv6-accounting=no` counts only when sessions get IPv6 (`dhcpv6-pd-pool` or `remote-ipv6-prefix-pool` on a profile) | LOW |
-| Sessions by service | `/ppp active print count-only`, then `/ppp active print count-only where service=pptp` and the same for `l2tp`, `sstp`, `ovpn`, `pppoe` | context: which PPP services actually carry sessions, to weigh the service skills' findings | LOW |
+| Sessions by service | `/ppp active print count-only`, then `/ppp active print count-only where service=pptp` and the same for `l2tp`, `sstp`, `ovpn`, `tunnels/pppoe` | context: which PPP services actually carry sessions, to weigh the service skills' findings | LOW |

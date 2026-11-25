@@ -22,4 +22,4 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **Empty `encoding` is normal for PPPoE.** It has no encryption by design; that is not a finding here.
 - **`caller-id` is the client's MAC address**, not an IP.
 - **IPv6 rides inside the session** (measured: DHCPv6-PD bound over PPPoE). The concentrator's IPv6 firewall applies to every subscriber prefix.
-- PPP profiles, secrets and RADIUS are in `ppp` and `aaa`.
+- PPP profiles, secrets and RADIUS are in `vpn/ppp` and `aaa`.
