@@ -1,6 +1,6 @@
 # VXLAN checks
 
-Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.1.
+Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.2.
 
 ## 1. Overlays
 
@@ -13,7 +13,7 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| VXLAN port reachable from any source | `/ip firewall raw print stats where chain=prerouting` + `/ip firewall filter print stats where chain=input` + `/ipv6 firewall raw print stats where chain=prerouting` + `/ipv6 firewall filter print stats where chain=input` | following the rule order, the first rule that matches UDP to the VXLAN `port` from the WAN accepts it from any source address; rules with no `protocol` count, and so does an input chain with no final drop. Anyone who guesses the VNI injects frames. HIGH when the interface is in a bridge with the LAN | MEDIUM |
+| VXLAN port reachable from any source | `/interface vxlan print proplist=name,port,allow-fast-path` + `/ip firewall raw print stats where chain=prerouting` + `/ip firewall filter print stats where chain=input` + `/ipv6 firewall raw print stats where chain=prerouting` + `/ipv6 firewall filter print stats where chain=input` | following the rule order, the first rule that matches UDP to the VXLAN `port` from the WAN accepts it from any source address; rules with no `protocol` count, and so does an input chain with no final drop. On an interface with `allow-fast-path=yes` (the default) no `raw` or `input` rule counts: packets for a configured VNI bypass them (measured). Anyone who guesses the VNI injects frames. HIGH when the interface is in a bridge with the LAN | MEDIUM |
 | MAC learned from a VTEP nobody declared | `/interface vxlan fdb print proplist=interface,remote-ip,mac-address` + the `vteps` command above | an FDB entry whose `remote-ip` is not a static VTEP of the same interface, with no multicast `group` or dynamic VTEP to explain it: a source outside the design is already sending frames | MEDIUM |
 | FDB without a tight cap | `/interface vxlan print proplist=name,learning,max-fdb-size` | `learning=yes` with `max-fdb-size` left at 4096 on an interface whose port is reachable from untrusted sources: a flood of fake MACs fills the table | LOW |
 

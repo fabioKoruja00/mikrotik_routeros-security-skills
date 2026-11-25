@@ -39,4 +39,3 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Private web without password | `:put [/user-manager advanced get web-private-username]` + `:put [:len [/user-manager advanced get web-private-password]]` | username set with password length 0 | MEDIUM |
 | PayPal configured without use | `:put [:len [/user-manager advanced get paypal-user]]` | non-empty where nobody takes payments: credentials stored for nothing | LOW |
 | Session evidence | `/user-manager session print proplist=user,nas-ip-address,calling-station-id,user-address,started,ended,terminate-cause where active` | session from a NAS address not in the router list, or one user active from several `calling-station-id`: shared or stolen credential. Without `where active` the table can be huge on a small device | MEDIUM |
-</content>

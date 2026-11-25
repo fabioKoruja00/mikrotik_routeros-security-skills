@@ -23,4 +23,3 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 |---|---|---|---|
 | Remote agents | `/dude agent print` | agents nobody recognises: a remote poller that receives probe tasks and credentials | MEDIUM |
 | Monitored inventory | `/dude device print`, `/dude service print`, `/dude probe print`, `/dude notification print` | names only; objects nobody recognises in the map, or notifications nobody planned | LOW |
-</content>

@@ -20,6 +20,8 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **A plain `print` of a client shows `password`.** Use the `proplist` in the checks.
 - **On 7.25 the server menu is a list.** `/interface ovpn-server server` holds named entries, each with its own port, certificate and algorithms; an empty print means no server, not defaults.
 - **Factory values, measured.** A new server: `protocol=tcp`, `certificate` none, `require-client-certificate=no`, `tls-version=any`, `auth=sha1,md5,sha256,sha512`, `cipher=blowfish128,aes128-cbc`, `user-auth-method=pap`. A new client: `auth=sha1`, `cipher=blowfish128`, `tls-version=any`, `verify-server-certificate=no`, `use-peer-dns=yes`.
+- **Two entries cannot share protocol, port and VRF**, even when the existing one is disabled (`already have a server with the same protocol-port-vrf combination`). A disabled entry still holds its port.
+- **Before 7.25.2, a certificate renewed by ACME is not picked up by the services using it.** On older versions compare the certificate the server presents with the one in `/certificate`.
 - **Each server shows in `/ip service` as dynamic `ovpn-server`** on its port and protocol.
 - **OVPN runs over IPv6 transport** (measured: UDP to an IPv6 server address, certificate verified, session up). Read both input chains.
 - **A `remote-ipv6-prefix-pool` on the server's PPP profile stalled the session at `link established`**, and a RouterOS client takes no pushed IPv6 address. A tunnel that will not come up is not proof of a firewall block.

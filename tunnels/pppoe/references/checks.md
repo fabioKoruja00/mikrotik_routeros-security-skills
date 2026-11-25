@@ -1,6 +1,6 @@
 # PPPoE checks
 
-Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.1.
+Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.2.
 
 ## 1. Concentrator
 
@@ -8,7 +8,8 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 |---|---|---|---|
 | Several sessions from one host | `/interface pppoe-server server print detail` (no secret in this menu) | `one-session-per-host=no` (default): one MAC opens many sessions | MEDIUM |
 | Same credential on several sessions | `/ppp profile print proplist=name,only-one,interface-list,use-encryption` | the server's `default-profile` and the profiles of PPPoE secrets with `only-one` other than `yes`: one credential is shared or cloned unnoticed. With RADIUS (`/ppp aaa`) the limit lives in the RADIUS server instead | MEDIUM |
-| No ceiling on sessions | the server command above | `max-sessions=unlimited` (default) on a concentrator sized for a known subscriber count: a flood of sessions exhausts pool and CPU | LOW |
+| Dead sessions kept | the server command above | `keepalive-timeout=0`: a client that disappears without PADT keeps its session and address (MTCRE: until the server restarts; measured: still active after 113 s; the factory 10 removed it in under 21 s) | LOW |
+| No ceiling on sessions | the server command above | `max-sessions=unlimited` (default) on a concentrator sized for a known subscriber count (with a limit, extra clients are refused and logged `limit of maximum connections exceeded`): a flood of sessions exhausts pool and CPU | LOW |
 | Concentrator accepting empty service | same command | no `accept-empty-service=no` in the output (the field is hidden while `yes`, the default). Measured: a client with an empty `service-name` joined a server that announced `svc-teste` | MEDIUM |
 | Weak PPP authentication | same command | `authentication` containing `pap`, `chap` or `mschap1` (the default is all four plus `mschap2`): PAP sends the password in clear on the access segment, the others are weak. A RADIUS backend that only takes PAP is a documented exception | MEDIUM |
 | Concentrator with an IP on the access interface | `/ip address print proplist=address,interface` + `/ipv6 address print proplist=address,interface where !link-local` + `/interface bridge port print proplist=bridge,interface` | the interface where PPPoE listens, or the bridge it belongs to, holds an IPv4 or global IPv6 address: subscribers reach the router and each other at layer 3 outside PPP. No address there: no finding | MEDIUM |

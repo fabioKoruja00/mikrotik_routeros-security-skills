@@ -32,4 +32,3 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Scanner without whitelist | `/iot bluetooth scanners print proplist=type,filter-policy,disabled` + `/iot bluetooth whitelist print proplist=address,device,disabled` | enabled scanner accepting every advertiser where only known tags matter: unrelated devices feed the data pipeline | LOW |
 | Peripheral keys stored | `/iot bluetooth peripheral-devices print proplist=name,address,address-type,persist` + `/iot bluetooth peripheral-devices print count-only where mtik-key!=""` | keys for tags nobody recognises; never print `mtik-key` | LOW |
 | Wiliot server without TLS | `/iot wiliot servers print proplist=name,address,port,ssl,certificate` | `ssl=no` to a cloud endpoint. The list ships with a factory entry; judge it only where Wiliot tags are in use | LOW |
-</content>

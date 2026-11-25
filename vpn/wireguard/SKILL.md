@@ -17,9 +17,8 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **Never run `wg-export`, `print detail` or `export show-sensitive` on WireGuard.** The interface holds `private-key`; peers can hold `private-key` and `preshared-key`. Use the `proplist` in the checks and `count-only` for presence.
-- **`allowed-address` does not install routes.** It is the source filter and the crypto-routing table; routes to the remote networks are separate entries in `/ip route`.
-- **The listen port shows in `/ip service` as dynamic `wireguard-<interface>`.** WireGuard answers nothing to a packet without a valid key, so the open port alone is not a finding.
+- **Never run `show-client-config`, `wg-export`, `print detail` or `export show-sensitive` on WireGuard.** The interface holds `private-key`; peers can hold `private-key` and `preshared-key`. On 7.25.2 `show-client-config` prints the client's real private key without `show-sensitive` (measured), while `print detail` and `export` hide it. Use the `proplist` in the checks and `count-only` for presence.
+- **`allowed-address` does not install routes.** It is the source filter and the crypto-routing table (measured: a packet from an address outside it was dropped, inside a wider prefix it was accepted); routes to the remote networks are separate entries in `/ip route`.
+- **The listen port shows in `/ip service` as dynamic `wireguard-<interface>`, and the firewall sees it.** Unlike VXLAN, a drop on the WireGuard port in `input` counted and cut the tunnel. WireGuard answers nothing to a packet without a valid key, so the open port alone is not a finding.
 - **Pick test addresses only after reading every `allowed-address`.** An overlap between interfaces or peers steers traffic to the wrong tunnel; 7.24 and later warn about it on the same interface only.
 - Back To Home tunnels are in `back-to-home`.
-</content>

@@ -113,11 +113,14 @@ devices, not one item per device.
 | `vpn/pptp` | PPTP server, client and exposure |
 | `vpn/sstp` | SSTP server and client, TLS and verification |
 | `vpn/ovpn` | OpenVPN servers and clients |
-| `vpn/pppoe` | PPPoE concentrators and clients |
 | `vpn/ppp` | PPP profiles, secrets and accounting |
-| `vpn/eoip` | EoIP and EoIPv6 tunnels |
-| `vpn/vxlan` | VXLAN interfaces, VTEPs and FDB |
 | `vpn/back-to-home` | Back To Home and Quick Set remote access |
+| `tunnels/pppoe` | PPPoE concentrators and clients |
+| `tunnels/eoip` | EoIP and EoIPv6 tunnels |
+| `tunnels/gre` | GRE and GRE6 tunnels |
+| `tunnels/ipip` | IPIP and IPIPv6 tunnels |
+| `tunnels/vxlan` | VXLAN interfaces, VTEPs and FDB |
+| `tunnels/6to4` | 6to4 and 6in4 tunnels |
 | `qos` | queues with a security effect |
 | `ipv6` | IPv6 stack, firewall, RA/ND, DHCPv6, transition |
 | `ospf` | OSPF |
@@ -126,7 +129,8 @@ devices, not one item per device.
 | `wireless` | wireless interfaces (legacy and wifi-qcom) |
 | `capsman` | CAPsMAN |
 | `scripts-storage` | scripts, scheduler, files, containers |
-| `logging` | logging, NTP, SNMP |
+| `logging` | logging, NTP, e-mail, Netwatch |
+| `logging/snmp` | SNMP communities and traps |
 | `aaa` | RADIUS client, PPP secrets |
 | `user-manager` | User Manager (built-in RADIUS server) |
 | `dude` | The Dude server |

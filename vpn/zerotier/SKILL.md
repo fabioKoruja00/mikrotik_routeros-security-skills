@@ -17,9 +17,8 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-- **The instance holds the node's private `identity`.** No bare `print`, `print detail` or `export show-sensitive` on `/zerotier`; use the `proplist` in the checks.
+- **The instance holds the node's private `identity`.** `print detail` and `export show-sensitive` on `/zerotier` show it (public part, `:`, private part); a bare `print` shows only `identity.public`. Use the `proplist` in the checks. An empty `identity` means the instance never ran.
 - **Empty `allow-default`, `allow-global` and `allow-managed` mean the ZeroTier defaults**, not "off": treat an explicit `yes` as the operator's choice.
 - **The package needs `device-mode` `zerotier=yes`.** On `home` and `basic` modes the menu is absent even with the package installed.
-- **The UDP port shows in `/ip service` as dynamic `zerotier-one`.** ZeroTier needs it to reach its roots; exposure is about what the overlay reaches, not the port itself.
+- **The UDP ports show in `/ip service` as dynamic `zerotier-one`**: `port` (9993) plus two random ones, only while the instance runs, and they linger briefly after `disable`. ZeroTier needs them to reach its roots; exposure is about what the overlay reaches, not the ports.
 - The instance contacts ZeroTier's root servers on the Internet (`role=PLANET` peers). That is normal; a controller-only router still depends on them.
-</content>

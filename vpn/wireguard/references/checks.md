@@ -1,6 +1,6 @@
 # WireGuard checks
 
-Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.1.
+Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.2.
 
 ## 1. Interfaces
 
@@ -19,4 +19,3 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Peer without preshared key | `/interface wireguard peers print count-only where preshared-key=""` | count of peers relying only on the key pair, for policy comparison (the preshared key is the post-quantum hedge) | LOW |
 | Client private key kept on the router | `/interface wireguard peers print count-only where private-key!=""` | peers whose private key the router generated and still stores: whoever reads the configuration impersonates those clients | MEDIUM |
 | Stale peer | `/interface wireguard peers print proplist=interface,name,endpoint-address,last-handshake,disabled` | enabled peers with no `last-handshake` for weeks: a lost device whose key still opens the tunnel | LOW |
-</content>

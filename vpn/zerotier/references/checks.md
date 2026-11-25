@@ -1,6 +1,6 @@
 # ZeroTier checks
 
-Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.1.
+Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.2.
 
 ## 1. Instance and joined networks
 
@@ -28,4 +28,3 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
 | Direct peers | `/zerotier peer print proplist=instance,zt-address,role,latency,path` | `LEAF` peers with direct paths nobody recognises; `PLANET` peers are ZeroTier's roots | LOW |
-</content>

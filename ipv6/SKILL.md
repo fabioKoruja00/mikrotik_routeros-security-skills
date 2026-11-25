@@ -1,6 +1,6 @@
 ---
 name: ipv6
-description: "Read-only IPv6 security audit of MikroTik RouterOS: stack state, Router Advertisement and Neighbor Discovery, the IPv6 firewall (ICMPv6 by type, link-local and multicast, bogons, RAW), DHCPv6 and prefix delegation, IPv6 routing (BGP, OSPFv3), transition mechanisms (6to4, protocol 41, Teredo, GRE6/IPIPv6/EoIPv6), addressing plan and extension headers, plus the nuances that generate false positives. This skill should be used when a RouterOS device has IPv6 enabled (the v7 default) and its exposure must be assessed without changing configuration."
+description: "Read-only IPv6 security audit of MikroTik RouterOS: stack state, Router Advertisement and Neighbor Discovery, the IPv6 firewall (ICMPv6 by type, link-local and multicast, bogons, RAW), DHCPv6 and prefix delegation, IPv6 routing (BGP, OSPFv3), transition mechanisms (protocol 41, Teredo, GRE6/IPIPv6/EoIPv6; 6to4 tunnels in `tunnels/6to4`), addressing plan and extension headers, plus the nuances that generate false positives. This skill should be used when a RouterOS device has IPv6 enabled (the v7 default) and its exposure must be assessed without changing configuration."
 ---
 
 # IPv6

@@ -1,0 +1,3 @@
+interface:
+  display_name: "SNMP"
+  short_description: "Audit SNMP communities, write access, SNMPv3 algorithms and traps."

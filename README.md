@@ -1,7 +1,7 @@
 # routeros-security-skills
 
 Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI coding agents
-(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain; a category folder holds one skill per type (36 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
+(Claude Code, ChatGPT Skills and compatible skill loaders). One folder per domain; a category folder holds one skill per type (37 skills). Domain skills share two base dependencies: `audit-method` and `factory-defaults`.
 
 [Leia em português](README.pt-BR.md)
 
@@ -18,7 +18,8 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`layer2`](layer2/) | MNDP, neighbor table, DHCP snooping, RA Guard, horizon, BPDU guard, STP, bridge filters and hardware offload, VLAN filtering, PVID, MAC limits. |
 | [`dhcp`](dhcp/) | DHCP server alerts, pool exhaustion, static leases, add-arp, lease scripts, DHCP client trust. |
 | [`ip-settings`](ip-settings/) | `/ip settings` values that only show in print: rp-filter, redirects, source route, forwarding, ARP limits, ICMP rate. |
-| [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `pppoe`, `ppp`, `eoip`, `vxlan`, `back-to-home` (Back To Home and Quick Set). Port knocking is in `firewall`. |
+| [`vpn`](vpn/) | Category, one skill per type: `wireguard`, `zerotier`, `ipsec`, `l2tp`, `pptp`, `sstp`, `ovpn`, `ppp`, `back-to-home` (Back To Home and Quick Set). Port knocking is in `firewall`. |
+| [`tunnels`](tunnels/) | Category, one skill per type of tunnel without its own encryption: `pppoe`, `gre`, `ipip`, `eoip`, `vxlan`, `6to4`. |
 | [`qos`](qos/) | Queues with a security effect: management priority, guarantees, PCQ, dead queues, dynamic queues, bufferbloat. |
 | [`ipv6`](ipv6/) | IPv6 stack, RA/ND, IPv6 firewall, DHCPv6/PD, IPv6 routing, transition, addressing, extension headers. |
 | [`ospf`](ospf/) | OSPF neighborship, network types, areas, redistribution, PPPoE /32 flood, v6↔v7 menu map. |
@@ -27,7 +28,7 @@ Read-only security audit skills for MikroTik RouterOS (v6/v7), packaged for AI c
 | [`wireless`](wireless/) | Wireless interfaces (legacy and wifi-qcom): ciphers, PSK exposure, client admission, modes, regulatory, registration table. |
 | [`capsman`](capsman/) | CAPsMAN: CAP–controller trust, discovery, provisioning, datapaths, versions, automatic CA. |
 | [`scripts-storage`](scripts-storage/) | Scripts, scheduler, fetch, files and backups on disk, SMB, disks, containers. |
-| [`logging`](logging/) | Logging, NTP, e-mail, Netwatch, SNMP. |
+| [`logging`](logging/) | Category: `snmp`. Logging, NTP, e-mail and Netwatch are still in the category skill. |
 | [`aaa`](aaa/) | RADIUS client, CoA, AAA default group, PPP secrets. |
 | [`user-manager`](user-manager/) | User Manager (built-in RADIUS server): exposure, NAS list, auth methods, stored credentials. |
 | [`dude`](dude/) | The Dude server: client access, syslog listener, database, stored credentials. |

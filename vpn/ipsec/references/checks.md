@@ -1,6 +1,6 @@
 # IPsec checks
 
-Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.1.
+Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Method and output format: `audit-method`. Measured on RouterOS 7.25.2.
 
 ## 1. Algorithms
 
@@ -27,7 +27,9 @@ Severity scale: CRITICAL / HIGH / MEDIUM / LOW. Every command is read-only. Meth
 
 | Check | Read command | Characterises a failure | Sev. |
 |---|---|---|---|
-| Policy that falls back to cleartext | `/ip ipsec policy print count-only where level=use and !template and !dynamic` | `level=use` sends the traffic unencrypted while no SA exists (`require` and `unique` do not) | MEDIUM |
+| Policy that lets traffic out in clear | `/ip ipsec policy print proplist=peer,level,invalid,disabled where invalid and !template and !dynamic` | an invalid policy (measured: its peer disabled) lets the traffic it should protect pass in clear on both stacks, whatever its `level`. Its `print` shows `::/0` instead of the real addresses: identify it by `peer`. `level=use` with the peer enabled and IKE failing did not fall back to clear (measured) | MEDIUM |
+| AH where confidentiality is required | `/ip ipsec policy print proplist=src-address,dst-address,ipsec-protocols,proposal,disabled where ipsec-protocols=ah` + `/ip ipsec installed-sa print proplist=src-address,dst-address,enc-algorithm,auth-algorithm` | a policy with `ipsec-protocols=ah` over traffic that must stay private: AH authenticates but leaves the payload in clear (measured: SAs with `auth-algorithm` set and `enc-algorithm` empty, on IPv4 and IPv6) | MEDIUM |
+| Peer without identity | `/ip ipsec peer print proplist=name,address,disabled` + `/ip ipsec identity print proplist=peer,disabled` | an enabled peer that no identity names: the tunnel never comes up (measured: the log shows `identity not found for peer` and the far end `AUTHENTICATION_FAILED`), and the traffic stays blocked, not in clear | LOW |
 | Mode-config pushed to clients | `/ip ipsec mode-config print proplist=name,responder,address-pool,split-include,static-dns,system-dns` | context for the firewall review: a responder with `split-include` `0.0.0.0/0` sends all client traffic through the concentrator | LOW |
 | Masquerade or FastTrack in the tunnel path | `/ip firewall nat print stats where action=masquerade or action=src-nat` + `/ip firewall filter print stats where chain=forward` + the policy command | a masquerade whose selectors cross a tunnel policy with no earlier accept and no `ipsec-policy=out,none`; or a `fasttrack-connection` with no earlier accept for `ipsec-policy=in,ipsec` and `out,ipsec`. Either breaks the tunnel or leaks its traffic outside it | MEDIUM |
 | IKE open where nothing terminates it | `/ip firewall filter print stats where chain=input` + `/ipv6 firewall filter print stats where chain=input` + `/ip ipsec peer print count-only where !disabled` | udp/500, udp/4500, ESP or AH reachable from the WAN on either stack, in rule order, with zero enabled peers. Measured: the factory IPv6 input accepts all three from anywhere | LOW |

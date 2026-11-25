@@ -22,4 +22,3 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 - **The RADIUS ports show in `/ip service` as dynamic `manager` entries** with no `available-from` to read. Judge exposure from the input chain, not from the service list.
 - v6 has a different product under `/tool user-manager`; these checks cover v7 `/user-manager`.
 - The router as RADIUS *client* (`/radius`, CoA, `default-group`) is in `aaa`.
-</content>
