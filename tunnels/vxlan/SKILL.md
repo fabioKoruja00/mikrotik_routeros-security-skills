@@ -17,9 +17,9 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 
 ## Traps
 
-Measured on 7.25.2 with a VXLAN between two routers.
+Measured on 7.25.2 with VXLAN between two routers over IPv4 and over IPv6, carrying IPv4 and IPv6.
 
-- **Fast path skips the firewall.** With `allow-fast-path=yes` (the default), VXLAN packets for a configured VNI reach the interface without passing `raw` or `filter`: a drop on the VXLAN port counted nothing and the tunnel kept working. With `allow-fast-path=no` the same rule dropped them.
+- **Fast path skips the firewall, on both stacks.** With `allow-fast-path=yes` (the default), VXLAN packets for a configured VNI reach the interface without passing `raw` or `filter` (IPv4) or the IPv6 `input` chain: a drop on the VXLAN port counted nothing and the tunnel kept working. With `allow-fast-path=no` the same rule dropped them.
 - **Static VTEPs are not an access list.** A VTEP left out of `/interface vxlan vteps` still gets its frames accepted and its MAC and IP learned into the FDB, and a ping crossed both ways: the undeclared source gets a two-way session.
 - **`learning=no` does not refuse frames.** Frames from an undeclared VTEP are still decapsulated (ARP is learned from them); only the FDB entry is not created, and the undeclared source got no reply.
 - **Read `port` on each interface.** The default on 7.25.2 is 4789; older course material uses 8472. Several interfaces can share one port, separated by VNI.
