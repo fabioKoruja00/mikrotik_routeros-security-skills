@@ -18,7 +18,9 @@ Read-only: `print`, `get`, `export`, `monitor` only — never `set`, `add`, `rem
 ## Traps
 
 - **Never `print detail` or `export show-sensitive` on `/ppp secret`.** It holds `password`. Use the `proplist` in the checks; password strength is not assessed.
-- **Factory values, measured.** Profile `default`: `use-encryption=default`, `only-one=default`, no `interface-list`. Profile `default-encryption`: `use-encryption=yes`. A new secret: `service=any`, `profile=default`. `/ppp aaa`: `use-radius=no`, `accounting=yes`, `interim-update=0s`, `enable-ipv6-accounting=no`.
+- **Factory values, measured.** Profile `default`: `use-encryption=default`, `only-one=default`, no `interface-list`. Profile `default-encryption`: `use-encryption=yes`. A new secret: `service=any`, `profile=default`. `/ppp aaa`: `use-radius=no`, `accounting=yes`, `interim-update=0s`, `enable-ipv6-accounting=no`. Both factory profiles: no `bridge`, `address-list=""`, `use-upnp=default`, `use-ipv6=yes`, `change-tcp-mss=yes`; a new profile has `change-tcp-mss=default`, and no dynamic mangle rule shows the clamp either way.
+- **`bridge` is absent until set.** `where bridge!=""` matches every profile; `where bridge` matches only those with one.
+- **A profile `bridge` needs the client to ask for BCP.** A MikroTik client on its factory profile got no bridge port; with a bridge on its profile, the session became a dynamic port of the bridge on both ends; it leaves on disconnect, and so does the session's dynamic `address-list` entry.
 - **`on-up` and `on-down` run as scripts on every session.** Read their content only through `scripts-storage` rules; here, presence is the finding.
 - **With RADIUS, local secrets stop being the policy but are still checked first.** `only-one` on the effective profile keeps applying to RADIUS users. Read `/ppp aaa` before judging secrets.
 - Service-specific settings are in `pptp`, `l2tp`, `sstp`, `ovpn` and `tunnels/pppoe`; RADIUS servers in `aaa`.
